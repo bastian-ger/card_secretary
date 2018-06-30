@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Welcome from './components/Welcome/Welcome';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <p>This is a test!</p>
-      </div>
+      <Switch>
+        <Route path="/" component={Welcome}/>
+      </Switch>
     );
   }
 }
