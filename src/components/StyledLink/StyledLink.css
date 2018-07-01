@@ -1,0 +1,58 @@
+.StyledLink {
+  border: 1px solid black;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  font-weight: bolder;
+  font-size: 24px;
+  border-radius: 5px;
+  display: block;
+  margin: 20px auto;
+  width: 75%;
+}
+
+@media (min-width: 576px) {
+  .StyledLink {
+    width: 400px;
+  }
+}
+
+.Green {
+  background-color: #55c21b;
+}
+
+.Green:visited,
+.Green:hover,
+.Green:active
+ {
+  background-color: white;
+  color: #55c21b;
+  text-decoration: none;
+}
+
+
+.Red {
+  background-color: #b61821;
+}
+
+.Red:visited,
+.Red:hover,
+.Red:active
+ {
+  background-color: white;
+  color: #b61821;
+  text-decoration: none;
+}
+
+.Purple {
+  background-color: #8631da;
+}
+
+.Purple:visited,
+.Purple:hover,
+.Purple:active
+ {
+  background-color: white;
+  color: #8631da;
+  text-decoration: none;
+}
