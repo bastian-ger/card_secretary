@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Games.css';
-import StyledLink from '../StyledLink/StyledLink';
+import StyledLink from '../UI/StyledLink/StyledLink';
 
 const Games = (props) => {
   return (

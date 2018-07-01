@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Footer.css';
-import FontAwesomeLink from '../FontAwesomeLink/FontAwesomeLink';
+import FontAwesomeLink from '../UI/FontAwesomeLink/FontAwesomeLink';
 
 const Footer = (props) => {
   return (
