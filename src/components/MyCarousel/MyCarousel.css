@@ -1,0 +1,15 @@
+.MyCarousel img {
+  width: 100%;
+}
+
+.MyCarousel a {
+  cursor: pointer;
+}
+
+@media (min-width: 600px) {
+  .MyCarousel {
+    width: 600px;
+    height: 400px;
+    margin: auto;
+  }
+}

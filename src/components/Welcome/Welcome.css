@@ -1,0 +1,16 @@
+.Welcome {
+  text-align: center;
+}
+
+.Welcome h1 {
+  margin-bottom: 20px;
+}
+
+.Welcome p {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.Welcome li {
+  list-style-type: none;
+}
