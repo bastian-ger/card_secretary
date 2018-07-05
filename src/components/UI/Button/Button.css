@@ -1,0 +1,52 @@
+.Button {
+  border: 1px solid black;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  font-weight: bolder;
+  font-size: 24px;
+  border-radius: 5px;
+  margin: 20px auto;
+  width: 75%;
+}
+
+@media (min-width: 576px) {
+  .Button {
+    width: 400px;
+  }
+}
+
+.Button:disabled {
+  color: grey;
+  cursor: not-allowed;
+}
+
+.Green {
+  background-color: #55c21b;
+}
+
+.Green:hover,
+ {
+  background-color: white;
+  color: #55c21b;
+}
+
+.Red {
+  background-color: #b61821;
+}
+
+.Red:hover,
+ {
+  background-color: white;
+  color: #b61821;
+}
+
+.Purple {
+  background-color: #8631da;
+}
+
+.Purple:hover,
+ {
+  background-color: white;
+  color: #8631da;
+}
