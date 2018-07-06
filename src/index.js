@@ -5,11 +5,17 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import 'bootstrap';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import playerReducer from './store/reducers/players';
+import gameDependentComponentReducer from './store/reducers/gameDependentComponent';
 import { Provider } from 'react-redux';
 
-const store = createStore(playerReducer);
+const rootReducer = combineReducers({
+  players: playerReducer,
+  gameDependentComponentValue: gameDependentComponentReducer
+});
+
+const store = createStore(rootReducer);
 
 const app = (
   <Provider store={store}>
