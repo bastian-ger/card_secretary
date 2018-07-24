@@ -11,7 +11,7 @@ import MauMauMiniForm from '../MauMauMiniForm/MauMauMiniForm';
 
 class PlayersForm extends Component {
   state = {
-    players: [],
+    players: {},
     currentPlayerName: '',
     gameDependentComponentValue: 100
   }
@@ -40,15 +40,15 @@ class PlayersForm extends Component {
         <button onClick={this.addNameHandler}>Add name</button>
           {gameDependentComponent}
         </form>
-        {this.state.players.length > 0 ? <h2>These are your players...</h2> : null}
+        {Object.keys(this.state.players).length > 0 ? <h2>These are your players...</h2> : null}
         <ul>
-          {this.state.players.map(player => {
+          {Object.keys(this.state.players).map(player => {
             return (
               <li className={classes.List} key={player} onClick={this.removeNameHandler}>{player}</li>
             );
           })}
         </ul>
-        {this.state.players.length > 0 ?
+        {Object.keys(this.state.players).length > 0 ?
           <Aux>
             <small>Click on one of the names in order to remove it.</small>
             <Button
@@ -71,9 +71,14 @@ class PlayersForm extends Component {
     event.preventDefault();
   }
 
-  addNameHandler = (event) => {
+  addNameHandler = () => {
     if (this.state.currentPlayerName.length > 1) {
-      const updatedPlayers = [...this.state.players, this.state.currentPlayerName];
+      const updatedPlayers = {
+        ...this.state.players,
+        [this.state.currentPlayerName]: 0
+      };
+      console.log(updatedPlayers);
+
       this.setState({
         players: updatedPlayers,
         currentPlayerName: ''
@@ -81,10 +86,14 @@ class PlayersForm extends Component {
     }
   }
 
-  removeNameHandler = (event) => {
-    const updatedPlayers = this.state.players.filter(player => player !== event.currentTarget.innerText);
+  removeNameHandler = ({currentTarget}) => {
+    const updatedPlayers = {
+      ...this.state.players
+    };
+    const nameToBeRemoved = currentTarget.innerText;
+    delete updatedPlayers[nameToBeRemoved];
+
     this.setState({players: updatedPlayers});
-    console.log('player name removed', this.state.players);
   }
 
   // this keeps track of the value inside the gameDependentComponent

@@ -6,3 +6,10 @@ export const addPlayers = (players) => {
     players: players
   };
 };
+
+export const updatePoints = (players) => {
+  return {
+    type: actionTypes.UPDATE_POINTS,
+    players: players
+  }
+}
