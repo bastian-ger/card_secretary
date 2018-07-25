@@ -1,6 +1,6 @@
-import imageBlack from '../../assets/placeholder_img_black_600x400.png';
-import imagePink from '../../assets/placeholder_img_pink_600x400.png';
-import imageGreen from '../../assets/placeholder_img_green_600x400.png';
+import aces from '../../assets/aces.jpg';
+import jollies from '../../assets/jollies.jpg';
+import street from '../../assets/street.jpg';
 
 import classes from './MyCarousel.css';
 
@@ -15,19 +15,19 @@ import {
 
 const items = [
   {
-    src: imageBlack,
-    altText: 'Slide 1',
-    caption: 'Slide 1'
+    src: aces,
+    altText: 'aces on a table',
+    caption: ''
   },
   {
-    src: imagePink,
-    altText: 'Slide 2',
-    caption: 'Slide 2'
+    src: jollies,
+    altText: 'jollies on a table',
+    caption: ''
   },
   {
-    src: imageGreen,
-    altText: 'Slide 3',
-    caption: 'Slide 3'
+    src: street,
+    altText: 'cards on a table',
+    caption: ''
   }
 ];
 
@@ -89,6 +89,7 @@ class MyCarousel extends Component {
         activeIndex={activeIndex}
         next={this.next}
         previous={this.previous}
+        ride="carousel"
       >
         <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
         {slides}
