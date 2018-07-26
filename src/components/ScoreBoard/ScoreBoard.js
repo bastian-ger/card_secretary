@@ -3,7 +3,10 @@ import classes from './ScoreBoard.css';
 import { connect } from 'react-redux';
 
 class ScoreBoard extends Component {
-  // connect class from css module with Bootstrap class!
+  // state = {
+  //   gameFinished: false
+  // }
+
   render() {
     console.log('this.props.statsArray', this.props.statsArray);
     let elements = this.props.statsArray.map(stat => {
@@ -22,6 +25,7 @@ class ScoreBoard extends Component {
     return (
       <div className={classes.ScoreBoard}>
         <h2>current standings</h2>
+        <p>maximum point limit: {this.props.gameDependentComponentValue}</p>
         <section>
           {elements}
           <article className={classes.Total}>
@@ -30,6 +34,7 @@ class ScoreBoard extends Component {
               {this.generateTotal(this.props.statsArray)}
             </ul>
           </article>
+          {this.getWinnerAndLoser(this.props.statsArray)}
         </section>
       </div>
     );
@@ -47,7 +52,6 @@ class ScoreBoard extends Component {
     for (let property in statsArray[0].playersObject) {
       totalPlayersObject[property] = 0;
     }
-
     let sum;
     for (let key in totalPlayersObject) {
       sum = 0;
@@ -62,6 +66,90 @@ class ScoreBoard extends Component {
     }
     console.log(array);
     return array;
+  }
+  getWinnerAndLoser = (statsArray) => {
+    const totalPlayersObject = this.getTotalPlayersObject(statsArray);
+    const losers = [];
+    let jsxElements = [];
+    for (let property in totalPlayersObject) {
+      if (totalPlayersObject[property] >= this.props.gameDependentComponentValue) {
+        losers.push(property);
+      }
+    }
+    if (losers.length <= 0) {
+      return null;
+    }
+    else if (losers.length === 1) {
+      jsxElements.push(this.getWinner(statsArray));
+      jsxElements.push(
+        <article className={classes.Loser} key={losers[0]}>
+          <h3>The loser is: {losers[0]}</h3>
+          <p>Next time you will win!</p>
+        </article>
+      );
+      return jsxElements;
+    }
+    else {
+      jsxElements.push(this.getWinner(statsArray));
+      jsxElements.push(
+        <article className={classes.Winner} key={losers[0]}>
+          <h3>The losers are: {losers.join(' and ')}!!</h3>
+          <p>Next time you will win!</p>
+        </article>
+      );
+      return jsxElements;
+    }
+  }
+  getWinner = (statsArray) => {
+    const totalPlayersObject =  this.getTotalPlayersObject(statsArray);
+    let currentLowestValueKey = Object.keys(totalPlayersObject)[0];
+    let winners = [];
+    let lowestValue = Object.values(totalPlayersObject)[0];
+    for (let key in totalPlayersObject) {
+      if (totalPlayersObject[key] < lowestValue) {
+        lowestValue = totalPlayersObject[key];
+        currentLowestValueKey = key;
+      }
+    }
+    winners.push(currentLowestValueKey);
+    for (let property in totalPlayersObject) {
+      if (totalPlayersObject[property] === lowestValue && property !== currentLowestValueKey) {
+        winners.push(property);
+      }
+    }
+    if (winners.length === 1) {
+      return (
+        <article className={classes.Winner} key={winners[0]}>
+          <h3>The winner is: {winners[0]}</h3>
+          <p>Congratulations!!</p>
+        </article>
+      );
+    }
+    else {
+      return (
+        <article className={classes.Winner} key={winners[0]}>
+          <h3>The Winners are: {winners.join(' and ')}!!</h3>
+          <p>Congratulations!!</p>
+        </article>
+      );
+    }
+  }
+  getTotalPlayersObject = (statsArray) => {
+    let totalPlayersObject = {};
+
+    for (let property in statsArray[0].playersObject) {
+      totalPlayersObject[property] = 0;
+    }
+
+    let sum;
+    for (let key in totalPlayersObject) {
+      sum = 0;
+      for (let i = 0; i < statsArray.length; i++) {
+        sum = sum + parseInt(statsArray[i].playersObject[key], 10);
+      }
+      totalPlayersObject[key] = sum;
+    }
+    return totalPlayersObject;
   }
 }
 

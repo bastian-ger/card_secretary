@@ -24,10 +24,16 @@
   margin-top: 10px;
 }
 
-/* @media (min-width: 768px) {
-  article {
-    width: 696px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-} */
+.Loser {
+  background-color: black !important;
+  color: white;
+  box-shadow: 10px -8px 5px 0px #a9aa9d;
+  margin-top: 10px;
+}
+
+.Winner {
+  background-color: #55c21b !important;
+  color: #cccb3d;
+  box-shadow: 10px -8px 5px 0px #cccb3d;
+  margin-top: 10px;
+}
