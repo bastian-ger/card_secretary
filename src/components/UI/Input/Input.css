@@ -1,0 +1,33 @@
+.Input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.InputEl {
+  border: 2px solid grey;
+  padding: 10px 10px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.InputEl:invalid {
+  border: 2px solid #e8114b;
+  background-color: #f095bb;
+}
+
+.InputEl:valid {
+  background-color: #8fe290;
+}
+
+@media (min-width: 576px) {
+  .InputEl {
+    width: 447px;
+  }
+}
+
+.Label {
+  font-weight: bolder;
+  display: block;
+  margin-bottom: 10px;
+}

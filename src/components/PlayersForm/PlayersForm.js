@@ -8,6 +8,7 @@ import * as gameDependentComponentActions from '../../store/actions/gameDependen
 import { withRouter } from 'react-router-dom';
 
 import MauMauMiniForm from '../MauMauMiniForm/MauMauMiniForm';
+import Input from '../UI/Input/Input';
 
 class PlayersForm extends Component {
   state = {
@@ -25,19 +26,22 @@ class PlayersForm extends Component {
     return (
       <Aux>
         <form
-          onSubmit={this.submitHandler}
+          onSubmit={this.addNameHandler}
           className={classes.PlayersForm}
         >
-          <label htmlFor="name"></label>
-          <input
+          <Input
+            inputElementType="input"
             type="text"
             id="name"
             value={this.state.currentPlayerName}
-            placeholder="first name"
-            onChange={this.nameChangedHandler}
+            placeholder="enter between 2 and 10 letters"
+            minLength="2"
+            maxLength="10"
+            label=""
+            required
+            changed={this.nameChangedHandler}
           />
-          <small>please enter at least 2 letters!</small>
-        <button onClick={this.addNameHandler}>Add name</button>
+        <button>Add name</button>
           {gameDependentComponent}
         </form>
         {Object.keys(this.state.players).length > 0 ? <h2>These are your players...</h2> : null}
@@ -64,26 +68,23 @@ class PlayersForm extends Component {
   }
 
   nameChangedHandler = (event) => {
-    this.setState({currentPlayerName: event.target.value});
+    this.setState({
+      currentPlayerName: event.target.value,
+      touched: true
+    });
   }
 
-  submitHandler = (event) => {
+  addNameHandler = (event) => {
     event.preventDefault();
-  }
-
-  addNameHandler = () => {
-    if (this.state.currentPlayerName.length > 1) {
       const updatedPlayers = {
         ...this.state.players,
         [this.state.currentPlayerName]: 0
       };
-      console.log(updatedPlayers);
 
       this.setState({
         players: updatedPlayers,
-        currentPlayerName: ''
+        currentPlayerName: '',
       });
-    }
   }
 
   removeNameHandler = ({currentTarget}) => {
