@@ -41,7 +41,7 @@ class PlayersForm extends Component {
             required
             changed={this.nameChangedHandler}
           />
-        <button>Add name</button>
+        <Button buttonType="Green" small>Add name</Button>
           {gameDependentComponent}
         </form>
         {Object.keys(this.state.players).length > 0 ? <h2>These are your players...</h2> : null}
