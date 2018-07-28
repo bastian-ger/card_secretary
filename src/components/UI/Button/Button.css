@@ -14,6 +14,9 @@
   .Button {
     width: 400px;
   }
+  .Small {
+    width: 133px;
+  }
 }
 
 .Button:disabled {
@@ -49,4 +52,9 @@
  {
   background-color: white;
   color: #8631da;
+}
+
+.Small {
+  font-size: 16px;
+  width: 30%;
 }
