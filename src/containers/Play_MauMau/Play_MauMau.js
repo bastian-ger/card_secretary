@@ -43,7 +43,6 @@ render() {
                 id={player}
                 changed={this.inputChangedHandler}
                 value={this.state.playersObject[player]}
-                step="10"
               />
             </main>
           )
