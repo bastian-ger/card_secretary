@@ -37,6 +37,7 @@ render() {
                 inputElementType="input"
                 small
                 type="number"
+                label={player}
                 min="0"
                 required
                 id={player}
