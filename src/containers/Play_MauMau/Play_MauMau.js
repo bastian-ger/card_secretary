@@ -5,6 +5,7 @@ import Button from '../../components/UI/Button/Button';
 import * as playersActions from '../../store/actions/players';
 import * as statsActions from '../../store/actions/stats';
 import ScoreBoard from '../../components/ScoreBoard/ScoreBoard';
+import Input from '../../components/UI/Input/Input';
 
 class Play_MauMau extends Component {
   constructor(props) {
@@ -32,14 +33,16 @@ render() {
         {Object.keys(this.props.players).map(player => {
           return (
             <main key={player}>
-              <label htmlFor={player}>{player}: </label>
-              <input
+              <Input
+                inputElementType="input"
+                small
                 type="number"
+                min="0"
+                required
                 id={player}
-                onChange={this.inputChangedHandler}
+                changed={this.inputChangedHandler}
                 value={this.state.playersObject[player]}
                 step="10"
-                placeholder="multiples of 10"
               />
             </main>
           )
