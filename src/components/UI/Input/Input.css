@@ -9,6 +9,9 @@
   display: block;
   width: 100%;
   box-sizing: border-box;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
 }
 
 .InputEl:invalid {
@@ -24,10 +27,18 @@
   .InputEl {
     width: 447px;
   }
+  .Small {
+    width: 133px;
+  }
+}
+
+.Small {
+  width: 25%;
 }
 
 .Label {
   font-weight: bolder;
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
