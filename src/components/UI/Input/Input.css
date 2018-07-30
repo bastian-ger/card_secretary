@@ -9,9 +9,9 @@
   display: block;
   width: 100%;
   box-sizing: border-box;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px auto;
   border-radius: 10px;
+  text-align: center;
 }
 
 .InputEl:invalid {
@@ -33,7 +33,7 @@
 }
 
 .Small {
-  width: 25%;
+  width: 33%;
 }
 
 .Label {
