@@ -3,12 +3,7 @@ import classes from './ScoreBoard.css';
 import { connect } from 'react-redux';
 
 class ScoreBoard extends Component {
-  // state = {
-  //   gameFinished: false
-  // }
-
   render() {
-    console.log('this.props.statsArray', this.props.statsArray);
     let elements = this.props.statsArray.map(stat => {
       return (<article
         key={stat.round}
@@ -27,7 +22,6 @@ class ScoreBoard extends Component {
         <h2>current standings</h2>
         <p>maximum point limit: {this.props.gameDependentComponentValue}</p>
         <section>
-          {elements}
           <article className={classes.Total}>
             <h3>Total:</h3>
             <ul className="row">
@@ -35,6 +29,7 @@ class ScoreBoard extends Component {
             </ul>
           </article>
           {this.getWinnerAndLoser(this.props.statsArray)}
+          {elements}
         </section>
       </div>
     );
@@ -47,24 +42,11 @@ class ScoreBoard extends Component {
     return array;
   }
   generateTotal = (statsArray) => {
-    let totalPlayersObject = {};
-
-    for (let property in statsArray[0].playersObject) {
-      totalPlayersObject[property] = 0;
-    }
-    let sum;
-    for (let key in totalPlayersObject) {
-      sum = 0;
-      for (let i = 0; i < statsArray.length; i++) {
-        sum = sum + parseInt(statsArray[i].playersObject[key], 10);
-      }
-      totalPlayersObject[key] = sum;
-    }
+    const totalPlayersObject = this.getTotalPlayersObject(statsArray);
     const array = [];
     for (let prop in totalPlayersObject) {
       array.push(<li key={prop} className="col-6 col-sm-3 col-md-2"><span>{prop}:</span> {totalPlayersObject[prop]}</li>);
     }
-    console.log(array);
     return array;
   }
   getWinnerAndLoser = (statsArray) => {
