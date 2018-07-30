@@ -1,17 +1,22 @@
 import React from 'react';
-import classes from './MauMauMiniForm.css';
 import Aux from '../../hoc/Aux';
+import Input from '../UI/Input/Input';
 
 const MauMauMiniForm = (props) => {
   return (
     <Aux>
-      <label className={classes.Label} htmlFor="limit">What is your maximum point limit?</label>
-      <input
-        type="text"
+      <Input
+        inputElementType="input"
+        type="number"
         id="limit"
-        placeholder="points"
+        placeholder=""
+        label="What is your maximum point limit?"
+        min="100"
+        step="50"
+        required
+        small
         value={props.value}
-        onChange={props.changed}
+        changed={props.changed}
       />
     </Aux>
   );
