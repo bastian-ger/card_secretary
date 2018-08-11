@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classes from './App.css';
 import { Switch, Route } from 'react-router-dom';
 import Welcome from './components/Welcome/Welcome';
 import MyNavbar from './components/MyNavbar/MyNavbar';
@@ -10,7 +11,7 @@ import Play_MauMau from './containers/Play_MauMau/Play_MauMau';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className={classes.App}>
         <MyNavbar />
         <Switch>
           <Route path="/play/maumau" component={Play_MauMau}/>
