@@ -11,6 +11,12 @@ import gameDependentComponentReducer from './store/reducers/gameDependentCompone
 import statsReducer from './store/reducers/stats';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { faFrown, faSmile, faStar } from '@fortawesome/free-solid-svg-icons';
+
+// setting up library for fontawesome
+library.add(far, faFrown, faSmile, faStar);
 
 // composeEnhancers enables the Redux DevTools
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;

@@ -40,3 +40,19 @@
   margin-top: 10px;
   border: 3px solid #cccb3d !important;
 }
+
+@media (max-width: 575px) {
+  .Smiley {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .Smiley {
+    font-size: 0.6rem;
+  }
+}
+
+.Score {
+  padding: 0;
+}

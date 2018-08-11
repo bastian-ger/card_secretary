@@ -1,32 +1,49 @@
 import React, { Component } from 'react';
 import classes from './ScoreBoard.css';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+// some classNames here for complete access
+const fADivClassNames = ['col-2', classes.Smiley];
+const scoreDivClassNames = ['col-10', classes.Score];
 
 class ScoreBoard extends Component {
   render() {
     let elements = this.props.statsArray.map(stat => {
       return (<article
+        className="row"
         key={stat.round}
-        >
-        <h3>
-          Round: {stat.round}
-        </h3>
-        <ul className="row">
-          {this.generateLIs(stat.playersObject)}
-        </ul>
+      >
+        <div className={fADivClassNames.join(' ')}>
+          <FontAwesomeIcon icon={["far", "smile"]} size="5x" />
+        </div>
+        <div className={scoreDivClassNames.join(' ')}>
+          <h3>
+            Round: {stat.round}
+          </h3>
+          <ul className="row">
+            {this.generateLIs(stat.playersObject)}
+          </ul>
+        </div>
       </article>);
     })
 
+    const classNames=[classes.Total, 'row'];
     return (
       <div className={classes.ScoreBoard}>
         <h2>current standings</h2>
         <p>maximum point limit: {this.props.gameDependentComponentValue}</p>
         <section>
-          <article className={classes.Total}>
-            <h3>Total:</h3>
-            <ul className="row">
-              {this.generateTotal(this.props.statsArray)}
-            </ul>
+          <article className={classNames.join(' ')}>
+            <div className={fADivClassNames.join(' ')}>
+              <FontAwesomeIcon icon={["far", "smile"]} size="5x" />
+            </div>
+            <div className={scoreDivClassNames.join(' ')}>
+              <h3>Total:</h3>
+              <ul className="row">
+                {this.generateTotal(this.props.statsArray)}
+              </ul>
+            </div>
           </article>
           {this.getWinnerAndLoser(this.props.statsArray)}
           {elements}
@@ -62,21 +79,33 @@ class ScoreBoard extends Component {
       return null;
     }
     else if (losers.length === 1) {
+      const classNames = [classes.Loser, 'row']
       jsxElements.push(this.getWinner(statsArray));
       jsxElements.push(
-        <article className={classes.Loser} key={losers[0]}>
-          <h3>The loser is: {losers[0]}</h3>
-          <p>Next time you will win!</p>
+        <article className={classNames.join(' ')} key={losers[0]}>
+          <div className={fADivClassNames.join(' ')}>
+            <FontAwesomeIcon icon={["far", "frown"]} size="5x" />
+          </div>
+          <div className={scoreDivClassNames.join(' ')}>
+            <h3>The loser is: {losers[0]}</h3>
+            <p>Next time you will win!</p>
+          </div>
         </article>
       );
       return jsxElements;
     }
     else {
+      const classNames = [classes.Winner, 'row']
       jsxElements.push(this.getWinner(statsArray));
       jsxElements.push(
-        <article className={classes.Winner} key={losers[0]}>
-          <h3>The losers are: {losers.join(' and ')}!!</h3>
-          <p>Next time you will win!</p>
+        <article className={classNames.join(' ')} key={losers[0]}>
+          <div className={fADivClassNames.join(' ')}>
+            <FontAwesomeIcon icon={["far", "frown"]} size="5x" />
+          </div>
+          <div className={scoreDivClassNames.join(' ')}>
+            <h3>The losers are: {losers.join(' and ')}!!</h3>
+            <p>Next time you will win!</p>
+          </div>
         </article>
       );
       return jsxElements;
@@ -100,18 +129,30 @@ class ScoreBoard extends Component {
       }
     }
     if (winners.length === 1) {
+      const classNames = [classes.Winner, 'row'];
       return (
-        <article className={classes.Winner} key={winners[0]}>
-          <h3>The winner is: {winners[0]}</h3>
-          <p>Congratulations!!</p>
+        <article className={classNames.join(' ')} key={winners[0]}>
+          <div className={fADivClassNames.join(' ')}>
+            <FontAwesomeIcon icon={["far", "star"]} size="5x" />
+          </div>
+          <div className={scoreDivClassNames.join(' ')}>
+            <h3>The winner is: {winners[0]}</h3>
+            <p>Congratulations!!</p>
+          </div>
         </article>
       );
     }
     else {
+      const classNames = [classes.Winner, 'row'];
       return (
-        <article className={classes.Winner} key={winners[0]}>
-          <h3>The Winners are: {winners.join(' and ')}!!</h3>
-          <p>Congratulations!!</p>
+        <article className={classNames.join(' ')} key={winners[0]}>
+          <div className={fADivClassNames.join(' ')}>
+            <FontAwesomeIcon icon={["far", "star"]} size="5x" />
+          </div>
+          <div className={scoreDivClassNames.join(' ')}>
+            <h3>The Winners are: {winners.join(' and ')}!!</h3>
+            <p>Congratulations!!</p>
+          </div>
         </article>
       );
     }
