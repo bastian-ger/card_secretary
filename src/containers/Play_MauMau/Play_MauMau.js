@@ -18,12 +18,12 @@ class Play_MauMau extends Component {
     this.state = {
       round: round,
       playersObject: this.props.players,
-      showScoreboard: false
+      showScoreboard: false,
+      deleteButtonDisabled: true
     }
   }
 
 render() {
-
   return (
     <main className={classes.Play_MauMau}>
       <h1>Mau Mau</h1>
@@ -52,6 +52,14 @@ render() {
           clicked={this.enterPointsHandler}
         >
           Enter Points
+        </Button>
+        <Button
+          buttonType="Red"
+          clicked={this.removeLastScoreboardItem}
+          small
+          disabled={this.state.deleteButtonDisabled}
+        >
+          Delete Last Round
         </Button>
       </form>
       {this.state.showScoreboard ? <ScoreBoard /> : null}
@@ -83,7 +91,29 @@ render() {
 
     this.setState(prevState => ({
       round: prevState.round + 1,
-      playersObject: updatedPlayersObject
+      playersObject: updatedPlayersObject,
+      deleteButtonDisabled: false
+    }));
+  }
+  removeLastScoreboardItem = (event) => {
+    event.preventDefault();
+    this.props.onDeletePoints();
+
+    let showBoard = true;
+    if (this.props.stats.length === 0) {
+      showBoard = false;
+    }
+
+    let updatedPlayersObject = {};
+    for (let key in this.state.playersObject) {
+      updatedPlayersObject[key] = 0;
+    }
+
+    this.setState(prevState => ({
+      round: prevState.round - 1,
+      showScoreboard: showBoard,
+      playersObject: updatedPlayersObject,
+      deleteButtonDisabled: true
     }));
   }
 }
@@ -100,6 +130,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onPointsUpdated: (players) => dispatch(playersActions.updatePoints(players)),
     onStorePoints: (playersObject, round) => dispatch(statsActions.storePoints(playersObject, round)),
+    onDeletePoints: () => dispatch(statsActions.deletePoints())
   }
 }
 
