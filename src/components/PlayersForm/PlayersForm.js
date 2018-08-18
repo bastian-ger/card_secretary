@@ -19,8 +19,34 @@ class PlayersForm extends Component {
 
   render() {
     let gameDependentComponent = null;
+    // Here it is possible to set up games specific inputs
     if (this.props.match.path === '/maumau') {
-      gameDependentComponent = <MauMauMiniForm value={this.state.gameDependentComponentValue} changed={this.changedGameDependentComponentValue} />;
+      gameDependentComponent = <Input
+        inputElementType="input"
+        type="number"
+        id="limit"
+        placeholder=""
+        label="What is your maximum point limit?"
+        min="100"
+        step="50"
+        required
+        small
+        value={this.state.gameDependentComponentValue}
+        changed={this.changedGameDependentComponentValue} />;
+    }
+    if (this.props.match.path === '/rummy') {
+      gameDependentComponent = <Input
+        inputElementType="input"
+        type="number"
+        id="limit"
+        placeholder=""
+        label="What is your maximum point limit?"
+        min="100"
+        step="50"
+        required
+        small
+        value={this.state.gameDependentComponentValue}
+        changed={this.changedGameDependentComponentValue} />;
     }
 
     return (
