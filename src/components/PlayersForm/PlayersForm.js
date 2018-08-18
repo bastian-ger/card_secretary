@@ -131,7 +131,7 @@ class PlayersForm extends Component {
   startGameHandler = (players) => {
     this.props.onAddPlayers(players);
     this.props.onIncludeGameDependentComponentValue(this.state.gameDependentComponentValue);
-    this.props.history.push('/play/maumau');
+    this.props.history.push('/play/type1');
   }
 }
 

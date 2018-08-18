@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classes from './Play_MauMau.css';
+import classes from './Play_Type1.css';
 import { connect } from 'react-redux';
 import Button from '../../components/UI/Button/Button';
 import * as playersActions from '../../store/actions/players';
@@ -7,7 +7,7 @@ import * as statsActions from '../../store/actions/stats';
 import ScoreBoard from '../../components/ScoreBoard/ScoreBoard';
 import Input from '../../components/UI/Input/Input';
 
-class Play_MauMau extends Component {
+class Play_Type1 extends Component {
   constructor(props) {
     super(props);
     let round = 1;
@@ -25,8 +25,8 @@ class Play_MauMau extends Component {
 
 render() {
   return (
-    <main className={classes.Play_MauMau}>
-      <h1>Mau Mau</h1>
+    <main className={classes.Play_Type1}>
+      <h1>Enter Your Points</h1>
       <h2>Round: {this.state.round}</h2>
       <p>Points at the end of round {this.state.round}:</p>
       <form>
@@ -133,4 +133,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Play_MauMau);
+export default connect(mapStateToProps, mapDispatchToProps)(Play_Type1);

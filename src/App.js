@@ -6,7 +6,7 @@ import MyNavbar from './components/MyNavbar/MyNavbar';
 import Footer from './components/Footer/Footer';
 import Games from './components/Games/Games';
 import MauMau from './containers/MauMau/MauMau';
-import Play_MauMau from './containers/Play_MauMau/Play_MauMau';
+import Play_Type1 from './containers/Play_Type1/Play_Type1';
 import Rummy from './containers/Rummy/Rummy';
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
       <div className={classes.App}>
         <MyNavbar />
         <Switch>
-          <Route path="/play/maumau" component={Play_MauMau}/>
+          <Route path="/play/type1" component={Play_Type1}/>
           <Route path="/games" component={Games}/>
           <Route path="/maumau" component={MauMau}/>
           <Route path="/rummy" component={Rummy}/>
