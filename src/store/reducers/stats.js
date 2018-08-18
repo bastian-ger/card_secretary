@@ -10,6 +10,9 @@ const reducer = (state = initialState, action) => {
       const newArray = [...state];
       newArray.pop();
       return newArray;
+    case actionTypes.DELETE_STATS:
+      const anotherArray = [];
+      return anotherArray;
     default:
       return state;
   }

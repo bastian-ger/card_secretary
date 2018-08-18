@@ -11,5 +11,11 @@ export const updatePoints = (players) => {
   return {
     type: actionTypes.UPDATE_POINTS,
     players: players
-  }
-}
+  };
+};
+
+export const deletePlayers = () => {
+  return {
+    type: actionTypes.DELETE_PLAYERS
+  };
+};

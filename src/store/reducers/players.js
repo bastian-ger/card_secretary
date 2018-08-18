@@ -16,6 +16,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         players: action.players
       }
+    case actionTypes.DELETE_PLAYERS:
+      return {
+        players: {}
+      }
     default:
       return state;
   }

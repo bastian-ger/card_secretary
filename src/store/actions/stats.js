@@ -13,3 +13,9 @@ export const deletePoints = () => {
     type: actionTypes.DELETE_POINTS
   };
 };
+
+export const deleteStats = () => {
+  return {
+    type: actionTypes.DELETE_STATS
+  };
+};

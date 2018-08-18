@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import classes from './ScoreBoard.css';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Button from '../../components/UI/Button/Button';
+import Aux from '../../hoc/Aux';
+import * as statsActions from '../../store/actions/stats';
+import * as playersActions from '../../store/actions/players';
+import { withRouter } from 'react-router-dom';
 
 // some classNames here for complete access
 const fADivClassNames = ['col-2', classes.Smiley];
@@ -131,29 +136,45 @@ class ScoreBoard extends Component {
     if (winners.length === 1) {
       const classNames = [classes.Winner, 'row'];
       return (
-        <article className={classNames.join(' ')} key={winners[0]}>
-          <div className={fADivClassNames.join(' ')}>
-            <FontAwesomeIcon icon={["far", "star"]} size="5x" />
-          </div>
-          <div className={scoreDivClassNames.join(' ')}>
-            <h3>The winner is: {winners[0]}</h3>
-            <p>Congratulations!!</p>
-          </div>
-        </article>
+        <Aux key={winners[0]}>
+          <article className={classNames.join(' ')}>
+            <div className={fADivClassNames.join(' ')}>
+              <FontAwesomeIcon icon={["far", "star"]} size="5x" />
+            </div>
+            <div className={scoreDivClassNames.join(' ')}>
+              <h3>The winner is: {winners[0]}</h3>
+              <p>Congratulations!!</p>
+            </div>
+          </article>
+          <Button
+              buttonType="Purple"
+              clicked={this.finishGame}
+            >
+              Start New Game
+          </Button>
+        </Aux>
       );
     }
     else {
       const classNames = [classes.Winner, 'row'];
       return (
-        <article className={classNames.join(' ')} key={winners[0]}>
-          <div className={fADivClassNames.join(' ')}>
-            <FontAwesomeIcon icon={["far", "star"]} size="5x" />
-          </div>
-          <div className={scoreDivClassNames.join(' ')}>
-            <h3>The Winners are: {winners.join(' and ')}!!</h3>
-            <p>Congratulations!!</p>
-          </div>
-        </article>
+        <Aux key={winners[0]}>
+          <article className={classNames.join(' ')}>
+            <div className={fADivClassNames.join(' ')}>
+              <FontAwesomeIcon icon={["far", "star"]} size="5x" />
+            </div>
+            <div className={scoreDivClassNames.join(' ')}>
+              <h3>The Winners are: {winners.join(' and ')}!!</h3>
+              <p>Congratulations!!</p>
+            </div>
+          </article>
+          <Button
+              buttonType="Purple"
+              clicked={this.finishGame}
+            >
+              Start New Game
+          </Button>
+        </Aux>
       );
     }
   }
@@ -174,6 +195,11 @@ class ScoreBoard extends Component {
     }
     return totalPlayersObject;
   }
+  finishGame = () => {
+    this.props.onDeleteStats();
+    this.props.onDeletePlayers();
+    this.props.history.push('/games');
+  }
 }
 
 const mapStateToProps = state => {
@@ -183,4 +209,11 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(ScoreBoard);
+const mapDispatchToProps = dispatch => {
+  return {
+    onDeleteStats: () => dispatch(statsActions.deleteStats()),
+    onDeletePlayers: () => dispatch(playersActions.deletePlayers())
+  };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ScoreBoard));
