@@ -79,7 +79,6 @@ render() {
     event.preventDefault();
     this.props.onPointsUpdated(this.state.playersObject);
     this.props.onStorePoints(this.state.playersObject, this.state.round);
-    console.log('playersObject', this.state.playersObject);
     this.setState({
       showScoreboard: true
     });
