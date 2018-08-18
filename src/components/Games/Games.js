@@ -13,7 +13,7 @@ const Games = (props) => {
         Mau Mau
       </StyledLink>
       <StyledLink
-        component="Rommy"
+        component="Rummy"
         color="Red"
       >
         Rummy
