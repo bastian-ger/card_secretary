@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Welcome.css';
 import MyCarousel from '../MyCarousel/MyCarousel';
+import StyledLink from '../UI/StyledLink/StyledLink';
 
 const Welcome = (props) => {
   return (
@@ -15,13 +16,19 @@ const Welcome = (props) => {
           beatae eaque consectetur totam rerum repudiandae. Temporibus laboriosam,
           voluptate sed incidunt.
         </p>
-
       <h2>Madame Secretary currently takes care of the following games...</h2>
-      <ul>
-        <li>Mau Mau</li>
-        <li>Romme (German version)</li>
-        <li>More to come...</li>
-      </ul>
+      <StyledLink
+        component="/maumau"
+        color="Purple"
+        >
+        Mau Mau
+      </StyledLink>
+      <StyledLink
+        component="/rummy"
+        color="Purple"
+        >
+        Rummy
+      </StyledLink>
     </main>
   );
 }
