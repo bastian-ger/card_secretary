@@ -7,7 +7,6 @@ import * as playersActions from '../../store/actions/players';
 import * as gameDependentComponentActions from '../../store/actions/gameDependentComponent';
 import { withRouter } from 'react-router-dom';
 
-import MauMauMiniForm from '../MauMauMiniForm/MauMauMiniForm';
 import Input from '../UI/Input/Input';
 
 class PlayersForm extends Component {
