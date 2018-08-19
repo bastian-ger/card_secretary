@@ -59,9 +59,9 @@ class PlayersForm extends Component {
             type="text"
             id="name"
             value={this.state.currentPlayerName}
-            placeholder="enter between 2 and 10 letters"
+            placeholder="enter between 2 and 8 letters"
             minLength="2"
-            maxLength="10"
+            maxLength="8"
             label=""
             required
             changed={this.nameChangedHandler}

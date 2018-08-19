@@ -59,7 +59,11 @@ class ScoreBoard extends Component {
   generateLIs = (playersObject) => {
     let array = [];
     for (let key in playersObject) {
-      array.push(<li key={key} className="col-6 col-sm-3 col-md-2"><span>{key}:</span> {playersObject[key]}</li>);
+      array.push(<li
+        key={key}
+        className="col-6 col-sm-3 col-lg-2">
+        <span className={classes.Name}>{key}</span> <span className={classes.Points}>{playersObject[key]}</span>
+      </li>);
     }
     return array;
   }
@@ -67,7 +71,11 @@ class ScoreBoard extends Component {
     const totalPlayersObject = this.getTotalPlayersObject(statsArray);
     const array = [];
     for (let prop in totalPlayersObject) {
-      array.push(<li key={prop} className="col-6 col-sm-3 col-md-2"><span>{prop}:</span> {totalPlayersObject[prop]}</li>);
+      array.push(<li
+        key={prop}
+        className="col-6 col-sm-3 col-md-2">
+        <span className={classes.Name}>{prop}</span> <span className={classes.Points}>{totalPlayersObject[prop]}</span>
+      </li>);
     }
     return array;
   }

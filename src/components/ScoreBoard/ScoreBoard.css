@@ -11,12 +11,18 @@
   display: inline;
 }
 
-.ScoreBoard span {
+.ScoreBoard ul {
+  margin: 0;
+}
+
+.Name {
   font-weight: bolder;
 }
 
-.ScoreBoard ul {
-  margin: 0;
+.Points {
+  background-color: white;
+  border-radius: 15px;
+  display: block;
 }
 
 .Total {
