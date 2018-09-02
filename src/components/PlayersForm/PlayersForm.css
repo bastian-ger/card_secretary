@@ -11,6 +11,10 @@
   background-color: orange;
 }
 
+ul {
+  padding: 0;
+}
+
 @media (min-width: 576px) {
   .List {
     width: 350px;
