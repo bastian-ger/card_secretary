@@ -73,7 +73,7 @@ class ScoreBoard extends Component {
     for (let prop in totalPlayersObject) {
       array.push(<li
         key={prop}
-        className="col-6 col-sm-3 col-md-2">
+        className="col-6 col-sm-3 col-lg-2">
         <span className={classes.Name}>{prop}</span> <span className={classes.Points}>{totalPlayersObject[prop]}</span>
       </li>);
     }
