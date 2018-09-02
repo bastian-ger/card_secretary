@@ -38,7 +38,7 @@ render() {
                 small
                 type="number"
                 label={player}
-                min="0"
+                min={0}
                 required
                 id={player}
                 changed={this.inputChangedHandler}

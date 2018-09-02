@@ -26,8 +26,8 @@ class PlayersForm extends Component {
         id="limit"
         placeholder=""
         label="What is your maximum point limit?"
-        min="100"
-        step="50"
+        min={100}
+        step={50}
         required
         small
         value={this.state.gameDependentComponentValue}
@@ -40,8 +40,8 @@ class PlayersForm extends Component {
         id="limit"
         placeholder=""
         label="What is your maximum point limit?"
-        min="100"
-        step="50"
+        min={100}
+        step={50}
         required
         small
         value={this.state.gameDependentComponentValue}
@@ -60,8 +60,8 @@ class PlayersForm extends Component {
             id="name"
             value={this.state.currentPlayerName}
             placeholder="enter between 2 and 8 letters"
-            minLength="2"
-            maxLength="8"
+            minLength={2}
+            maxLength={8}
             label=""
             required
             changed={this.nameChangedHandler}
