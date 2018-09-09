@@ -147,7 +147,7 @@ class ScoreBoard extends Component {
         <Aux key={winners[0]}>
           <article className={classNames.join(' ')}>
             <div className={fADivClassNames.join(' ')}>
-              <FontAwesomeIcon icon={["far", "star"]} size="5x" />
+              <FontAwesomeIcon icon="flag-checkered" size="5x" />
             </div>
             <div className={scoreDivClassNames.join(' ')}>
               <h3>The winner is: {winners[0]}</h3>
@@ -169,7 +169,7 @@ class ScoreBoard extends Component {
         <Aux key={winners[0]}>
           <article className={classNames.join(' ')}>
             <div className={fADivClassNames.join(' ')}>
-              <FontAwesomeIcon icon={["far", "star"]} size="5x" />
+              <FontAwesomeIcon icon="flag-checkered" size="5x" />
             </div>
             <div className={scoreDivClassNames.join(' ')}>
               <h3>The Winners are: {winners.join(' and ')}!!</h3>

@@ -13,10 +13,11 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { library } from '@fortawesome/fontawesome-svg-core';
 // only the following icons are loaded from fontawesome
-import { faFrown, faSmile, faStar } from '@fortawesome/free-regular-svg-icons';
+import { faFrown, faSmile } from '@fortawesome/free-regular-svg-icons';
 import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faFlagCheckered } from '@fortawesome/free-solid-svg-icons';
 // setting up library for fontawesome
-library.add(faFrown, faSmile, faStar, faTwitter, faGithub);
+library.add(faFrown, faSmile, faTwitter, faGithub, faFlagCheckered);
 
 // composeEnhancers enables the Redux DevTools
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
