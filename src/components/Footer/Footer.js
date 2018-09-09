@@ -1,20 +1,28 @@
 import React from 'react';
 import classes from './Footer.css';
-import FontAwesomeLink from '../UI/FontAwesomeLink/FontAwesomeLink';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Footer = (props) => {
   return (
     <div className={classes.Footer}>
-      <FontAwesomeLink
-        classes={['fab', 'fa-twitter', 'fa-3x', 'purple', 'mr-2', 'mr-sm-3']}
-        url="https://twitter.com/?lang=de"
-        name="Twitter"
-      />
-      <FontAwesomeLink
-        classes={['fab', 'fa-github', 'fa-3x', 'purple', 'mr-2', 'mr-sm-3']}
-        url="https://github.com/bastian-ger/tiny-book-reviewer"
-        name="Twitter"
-      />
+      {/* fab is only a prefix here and does not need to be explicitly loaded */}
+      {/* from the fontawesome package */}
+      <a
+        href="https://twitter.com/?lang=de"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Twitter"
+        >
+        <FontAwesomeIcon icon={["fab", "twitter"]} size="3x" />
+      </a>
+      <a
+        href="https://github.com/bastian-ger/tiny-book-reviewer"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Github"
+        >
+        <FontAwesomeIcon icon={["fab", "github"]} size="3x" />
+      </a>
     </div>
   );
 }
