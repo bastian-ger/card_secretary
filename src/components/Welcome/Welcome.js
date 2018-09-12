@@ -11,10 +11,7 @@ const Welcome = (props) => {
         <p>
           This app will help you record the scores of your card games.
           Check the list of available card games. I will try to add more in the
-          future. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Et obcaecati eos, nihil, quaerat vel odit dolores facere error aliquam
-          beatae eaque consectetur totam rerum repudiandae. Temporibus laboriosam,
-          voluptate sed incidunt.
+          future. Have fun!
         </p>
       <h2>Madame Secretary currently takes care of the following games...</h2>
       <StyledLink
