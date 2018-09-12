@@ -12,7 +12,7 @@ class Rummy extends Component {
           There are many variations of this game. The common goal of all these variations
           is to build sets with three or four cards of the same rank and runs with
           three or more consecutive cards of the same suit. The one who disposes all of
-          his cars first, wins the game. Please check Wikipedia or Google for the
+          his cards first, wins the game. Please check a search engine for the
           existing variations and their respective rules.
         </p>
         <h2>Please choose or enter the names of all players!</h2>
