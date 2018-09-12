@@ -1,5 +1,5 @@
 {
-  "name": "cards_secretary",
+  "name": "card_secretary",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
