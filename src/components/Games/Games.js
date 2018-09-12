@@ -18,12 +18,6 @@ const Games = (props) => {
       >
         Rummy
       </StyledLink>
-      <StyledLink
-        component="Whatever"
-        color="Green"
-      >
-        Whatever
-      </StyledLink>
     </main>
   );
 }
