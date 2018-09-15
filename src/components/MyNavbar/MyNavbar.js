@@ -44,7 +44,7 @@ class MyNavbar extends Component {
               </NavItem>
               <NavItem>
                 <NavLink
-                  href="https://github.com/bastian-ger">
+                  href="https://github.com/bastian-ger/card_secretary">
                   GitHub
                 </NavLink>
               </NavItem>

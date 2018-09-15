@@ -16,7 +16,7 @@ const Footer = (props) => {
         <FontAwesomeIcon icon={["fab", "twitter"]} size="3x" />
       </a>
       <a
-        href="https://github.com/bastian-ger/tiny-book-reviewer"
+        href="https://github.com/bastian-ger/card_secretary"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Github"
