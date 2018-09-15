@@ -8,7 +8,7 @@ import Games from './components/Games/Games';
 import MauMau from './containers/MauMau/MauMau';
 import Play_Type1 from './containers/Play_Type1/Play_Type1';
 import Rummy from './containers/Rummy/Rummy';
-// import NotFound from './components/NotFound/NotFound';
+import NotFound from './components/NotFound/NotFound';
 import About from './components/About/About';
 
 class App extends Component {
@@ -23,7 +23,7 @@ class App extends Component {
           <Route path="/rummy" component={Rummy}/>
           <Route path="/about" component={About}/>
           <Route path="/" exact component={Welcome}/>
-          {/* <Route component={NotFound} /> */}
+          <Route component={NotFound} />
         </Switch>
         <Footer />
       </div>
