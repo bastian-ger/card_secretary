@@ -29,7 +29,8 @@ class MyNavbar extends Component {
           <NavbarBrand
             style={{color: '#a53ad7', textShadow: '2px 2px 4px #51b9cc'}}
             id="logo"
-            href="/"
+            tag={Link}
+            to="/"
             >
             Card Game Secretary
           </NavbarBrand>
