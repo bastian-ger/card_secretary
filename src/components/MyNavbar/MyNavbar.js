@@ -7,11 +7,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  NavLink } from 'reactstrap';
 
 class MyNavbar extends Component {
   constructor(props) {
@@ -20,6 +16,7 @@ class MyNavbar extends Component {
       isOpen: false
     }
     this.toggle = this.toggle.bind(this);
+    this.closeNavbar = this.closeNavbar.bind(this);
   }
 
   render() {
@@ -38,10 +35,22 @@ class MyNavbar extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink tag={Link} to="/games">Games</NavLink>
+                <NavLink
+                  onClick={this.closeNavbar}
+                  tag={Link}
+                  to="/games"
+                  >
+                  Games
+                </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} to="/about">About</NavLink>
+                <NavLink
+                  onClick={this.closeNavbar}
+                  tag={Link}
+                  to="/about"
+                  >
+                  About
+                </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink
@@ -58,6 +67,11 @@ class MyNavbar extends Component {
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
+    });
+  }
+  closeNavbar() {
+    this.setState({
+      isOpen: false
     });
   }
 }
