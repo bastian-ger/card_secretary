@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink as ReactRouterNavLink } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -37,8 +37,10 @@ class MyNavbar extends Component {
               <NavItem>
                 <NavLink
                   onClick={this.closeNavbar}
-                  tag={Link}
+                  tag={ReactRouterNavLink}
                   to="/games"
+                  activeclassname="active"
+                  exact
                   >
                   Games
                 </NavLink>
@@ -46,8 +48,10 @@ class MyNavbar extends Component {
               <NavItem>
                 <NavLink
                   onClick={this.closeNavbar}
-                  tag={Link}
+                  tag={ReactRouterNavLink}
                   to="/about"
+                  activeclassname="active"
+                  exact
                   >
                   About
                 </NavLink>
