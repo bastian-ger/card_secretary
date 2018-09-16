@@ -27,6 +27,7 @@
             required={this.props.required}
             value={this.props.value}
             id={this.props.id}
+            autoFocus={this.props.autofocus}
             onChange={this.props.changed} />;
           break;
         case ('textarea'):
@@ -37,6 +38,7 @@
             id={this.props.id}
             maxLength={this.props.maxLength}
             required={this.props.required}
+            autoFocus={this.props.autofocus}
             onChange={this.props.changed} />;
           break;
         case ('select'):
@@ -75,6 +77,7 @@
             required={this.props.required}
             value={this.props.value}
             id={this.props.id}
+            autoFocus={this.props.autofocus}
             onChange={this.props.changed} />;
       }
 
@@ -105,7 +108,8 @@
     ]).isRequired,
     id: PropTypes.string.isRequired,
     changed: PropTypes.func.isRequired,
-    label: PropTypes.string
+    label: PropTypes.string,
+    autofocus: PropTypes.bool
   }
 
   export default Input;
