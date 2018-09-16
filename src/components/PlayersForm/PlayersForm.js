@@ -64,7 +64,6 @@ class PlayersForm extends Component {
             maxLength={8}
             label=""
             required
-            autofocus
             changed={this.nameChangedHandler}
           />
         <Button buttonType="Green" small>Add name</Button>
