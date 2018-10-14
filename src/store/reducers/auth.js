@@ -23,7 +23,7 @@ const reducer = (state = initialState, action) =>  {
         error: null,
         loading: false
       };
-    case actionTypes.FAIL:
+    case actionTypes.AUTH_FAIL:
       return {
         ...state,
         error: action.error,
