@@ -9,6 +9,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import playerReducer from './store/reducers/players';
 import gameDependentComponentReducer from './store/reducers/gameDependentComponent';
 import statsReducer from './store/reducers/stats';
+import authReducer from './store/reducers/auth';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -25,7 +26,8 @@ const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX
 const rootReducer = combineReducers({
   players: playerReducer,
   gameDependentComponentValue: gameDependentComponentReducer,
-  stats: statsReducer
+  stats: statsReducer,
+  auth: authReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(
