@@ -5,6 +5,3 @@ export const STORE_POINTS = 'STORE_POINTS';
 export const DELETE_POINTS = 'DELETE_POINTS';
 export const DELETE_STATS = 'DELETE_STATS';
 export const DELETE_PLAYERS = 'DELETE_PLAYERS';
-export const AUTH_START = 'AUTH_START';
-export const AUTH_SUCCESS = 'AUTH_SUCCESS';
-export const AUTH_FAIL = 'AUTH_FAIL';

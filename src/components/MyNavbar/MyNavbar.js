@@ -62,17 +62,6 @@ class MyNavbar extends Component {
                   GitHub
                 </NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink
-                  onClick={this.closeNavbar}
-                  tag={ReactRouterNavLink}
-                  to="/auth"
-                  activeclassname="active"
-                  exact
-                  >
-                  Login/Sign Up
-                </NavLink>
-              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>

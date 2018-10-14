@@ -10,7 +10,6 @@ import Play_Type1 from './containers/Play_Type1/Play_Type1';
 import Rummy from './containers/Rummy/Rummy';
 import NotFound from './components/NotFound/NotFound';
 import About from './components/About/About';
-import Auth from './containers/Auth/Auth';
 
 class App extends Component {
   render() {
@@ -23,7 +22,6 @@ class App extends Component {
           <Route path="/maumau" component={MauMau}/>
           <Route path="/rummy" component={Rummy}/>
           <Route path="/about" component={About}/>
-          <Route path="/auth" component={Auth}/>
           <Route path="/" exact component={Welcome}/>
           <Route component={NotFound} />
         </Switch>
