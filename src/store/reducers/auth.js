@@ -8,7 +8,30 @@ const initialState =  {
 }
 
 const reducer = (state, action) =>  {
-
+  switch (action.type)  {
+    case actionTypes.AUTH_START:
+      return {
+        ...state,
+        error: null,
+        loading: true
+      };
+    case actionTypes.AUTH_SUCCESS:
+      return {
+        ...state,
+        token: action.token,
+        userid: action.userId,
+        error: null,
+        loading: false
+      };
+    case actionTypes.FAIL:
+      return {
+        ...state,
+        error: action.error,
+        loading: false
+      };
+    default:
+      return state;
+  }
 }
 
 export default reducer;
