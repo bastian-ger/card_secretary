@@ -1,0 +1,8 @@
+.Auth h1 {
+  text-align: center;
+}
+
+.Auth label, small {
+  display: block;
+  text-align: center;
+}

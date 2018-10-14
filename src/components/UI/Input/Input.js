@@ -27,7 +27,9 @@
             required={this.props.required}
             value={this.props.value}
             id={this.props.id}
-            onChange={this.props.changed} />;
+            onChange={this.props.changed}
+            pattern={this.props.pattern}
+            />;
           break;
         case ('textarea'):
           inputEl = <textarea
@@ -75,7 +77,9 @@
             required={this.props.required}
             value={this.props.value}
             id={this.props.id}
-            onChange={this.props.changed} />;
+            onChange={this.props.changed}
+            pattern={this.props.pattern}
+          />;
       }
 
       return (
@@ -91,7 +95,7 @@
   Input.propTypes = {
     small: PropTypes.bool,
     inputElementType: PropTypes.oneOf(['input', 'textarea', 'select']).isRequired,
-    type: PropTypes.oneOf(['text', 'number']).isRequired,
+    type: PropTypes.oneOf(['text', 'number', 'email', 'password']).isRequired,
     minLength: PropTypes.number,
     maxLength: PropTypes.number,
     max: PropTypes.number,
@@ -105,7 +109,8 @@
     ]).isRequired,
     id: PropTypes.string.isRequired,
     changed: PropTypes.func.isRequired,
-    label: PropTypes.string
+    label: PropTypes.string,
+    pattern: PropTypes.string
   }
 
   export default Input;
