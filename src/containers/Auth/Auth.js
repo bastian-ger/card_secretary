@@ -4,6 +4,7 @@ import Button from '../../components/UI/Button/Button';
 import classes from './Auth.css';
 import * as authActions from '../../store/actions/auth';
 import { connect } from 'react-redux';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Auth extends Component  {
   state = {
@@ -13,7 +14,7 @@ class Auth extends Component  {
   }
 
   render()  {
-    const form = <div>
+    let form = <div>
         <Input
           inputElementType="input"
           type="email"
@@ -36,14 +37,21 @@ class Auth extends Component  {
           label="password"
           pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
         />
-        <small>1 upper & 1 lower case letter, one number or special character, at least 8 characters</small>
+        <small>1 upper & 1 lower case letter, one number or special character,
+          at least 8 characters</small>
     </div>
+
+    if (this.props.loading) {
+      form = <Spinner />;
+    }
+
     return (
       <section className={classes.Auth}>
         <h1>{this.state.isSignUpMode ? 'SIGN UP' : 'SIGN IN'}</h1>
         <form
           onSubmit={this.submitHandler}>
           {form}
+          {this.props.error ? <p>Error: {this.props.error.message}</p> : null}
           <Button
             buttonType="Green"
             small
@@ -81,10 +89,17 @@ class Auth extends Component  {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    loading: state.auth.loading,
+    error: state.auth.error
+  };
+};
+
 const mapDispatchToProps = dispatch =>  {
   return  {
     onAuth: (email, password, isSignUpMode) => dispatch(authActions.auth(email, password, isSignUpMode))
   }
 };
 
-export default connect(null, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

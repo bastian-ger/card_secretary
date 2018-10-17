@@ -1,8 +1,12 @@
-.Auth h1 {
+.Auth h1, p {
   text-align: center;
 }
 
 .Auth label, small {
   display: block;
   text-align: center;
+}
+
+.Auth p {
+  color: #fc0000;
 }
