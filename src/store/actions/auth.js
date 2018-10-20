@@ -22,6 +22,20 @@ export const authFail = (error) =>  {
   };
 };
 
+export const logout = () => {
+  return {
+    type: actionTypes.AUTH_LOGOUT
+  };
+};
+
+export const checkAuthTimeout = (expiresInTime) => {
+  return dispatch => {
+    setTimeout(() => {
+      dispatch(logout());
+    }, expiresInTime * 1000);
+  };
+};
+
 export const auth = (email, password, isSignUpMode) =>  {
   let url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=' + process.env.REACT_APP_FIREBASE;
   const authData = {
@@ -38,10 +52,10 @@ export const auth = (email, password, isSignUpMode) =>  {
       .then(response => {
         console.log(response);
         dispatch(authSuccess(response.data.idToken, response.data.localId));
+        dispatch(checkAuthTimeout(response.data.expiresIn));
       })
-      .catch(error => {
-        console.log(error);
-        dispatch(authFail());
+      .catch(err => {
+        dispatch(authFail(err.response.data.error));
       })
   };
 };
