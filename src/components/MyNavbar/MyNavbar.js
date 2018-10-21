@@ -58,6 +58,17 @@ class MyNavbar extends Component {
               </NavItem>
               <NavItem>
                 <NavLink
+                  onClick={this.closeNavbar}
+                  tag={ReactRouterNavLink}
+                  to="/account"
+                  activeclassname="active"
+                  exact
+                  >
+                  Account
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
                   href="https://github.com/bastian-ger/card_secretary">
                   GitHub
                 </NavLink>
