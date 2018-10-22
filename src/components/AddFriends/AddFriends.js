@@ -26,6 +26,7 @@ const AddFriends = (props) => {
         minLength={2}
         maxLength={8}
         placeholder="John"
+        required
         value={names[i]}
         id={`name${i}`}
         changed={props.onFriendChange}
