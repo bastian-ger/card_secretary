@@ -2,19 +2,23 @@ import React, { Component } from 'react';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
 import AddFriends from '../../components/AddFriends/AddFriends';
+import { connect } from 'react-redux';
+import * as namesActions from '../../store/actions/names';
 import classes from './Account.css';
 
 class Account extends Component {
   state = {
-    myName: '',
-    numberOfFriends: 0,
-    name0: '',
-    name1: '',
-    name2: '',
-    name3: '',
-    name4: '',
-    name5: '',
-    name6: ''
+    names: {
+      myName: '',
+      name0: '',
+      name1: '',
+      name2: '',
+      name3: '',
+      name4: '',
+      name5: '',
+      name6: ''
+    },
+    numberOfFriends: 0
   };
   render() {
     return (
@@ -27,7 +31,7 @@ class Account extends Component {
             maxLength={8}
             required
             placeholder="John"
-            value={this.state.myName}
+            value={this.state.names.myName}
             id="myName"
             changed={this.nameHandler}
             label="Type in your first name"
@@ -47,13 +51,13 @@ class Account extends Component {
           />
           { this.state.myName && this.state.numberOfFriends
             ? <AddFriends numberOfFriends={this.state.numberOfFriends}
-              name0={this.state.name0}
-              name1={this.state.name1}
-              name2={this.state.name2}
-              name3={this.state.name3}
-              name4={this.state.name4}
-              name5={this.state.name5}
-              name6={this.state.name6}
+              name0={this.state.names.name0}
+              name1={this.state.names.name1}
+              name2={this.state.names.name2}
+              name3={this.state.names.name3}
+              name4={this.state.names.name4}
+              name5={this.state.names.name5}
+              name6={this.state.names.name6}
               onFriendChange={this.friendsNameHandler}
               /> : null }
           <Button
@@ -68,6 +72,7 @@ class Account extends Component {
   }
   submitHandler = (event) => {
     event.preventDefault();
+    this.props.onNamesPost(this.state.names, )
   }
   nameHandler = (event) => {
     this.setState({
@@ -109,4 +114,16 @@ class Account extends Component {
   }
 }
 
-export default Account;
+const mapStateToProps = state => {
+  return {
+    userId: state.auth.userId
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onNamesPost: (names, userId) => dispatch(namesActions.namesPost(names, userId))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Account);
