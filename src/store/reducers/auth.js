@@ -19,7 +19,7 @@ const reducer = (state = initialState, action) =>  {
       return {
         ...state,
         token: action.token,
-        userid: action.userId,
+        userId: action.userId,
         error: null,
         loading: false
       };
