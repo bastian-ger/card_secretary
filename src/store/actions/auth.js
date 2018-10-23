@@ -53,6 +53,18 @@ export const auth = (email, password, isSignUpMode) =>  {
         console.log(response);
         dispatch(authSuccess(response.data.idToken, response.data.localId));
         dispatch(checkAuthTimeout(response.data.expiresIn));
+        if (isSignUpMode) {
+          const patchObject = {
+            [response.data.localId]: { myName: '' }
+          }
+          axios.patch('https://card-secretary.firebaseio.com/users.json', patchObject)
+            .then(response => {
+              console.log('patch successful', response);
+            })
+            .catch(err => {
+              console.log('patch failed', err);
+            });
+        }
       })
       .catch(err => {
         dispatch(authFail(err.response.data.error));
