@@ -10,6 +10,7 @@ import playerReducer from './store/reducers/players';
 import gameDependentComponentReducer from './store/reducers/gameDependentComponent';
 import statsReducer from './store/reducers/stats';
 import authReducer from './store/reducers/auth';
+import namesReducer from './store/reducers/names';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
   players: playerReducer,
   gameDependentComponentValue: gameDependentComponentReducer,
   stats: statsReducer,
-  auth: authReducer
+  auth: authReducer,
+  names: namesReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(
