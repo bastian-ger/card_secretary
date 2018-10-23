@@ -7,7 +7,11 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink } from 'reactstrap';
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem } from 'reactstrap';
 
 class MyNavbar extends Component {
   constructor(props) {
@@ -58,32 +62,36 @@ class MyNavbar extends Component {
               </NavItem>
               <NavItem>
                 <NavLink
-                  onClick={this.closeNavbar}
-                  tag={ReactRouterNavLink}
-                  to="/account"
-                  activeclassname="active"
-                  exact
-                  >
-                  Account
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink
                   href="https://github.com/bastian-ger/card_secretary">
                   GitHub
                 </NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink
-                  onClick={this.closeNavbar}
-                  tag={ReactRouterNavLink}
-                  to="/auth"
-                  activeclassname="active"
-                  exact
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  SignUp/SignIn
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem
+                    onClick={this.closeNavbar}
+                    tag={ReactRouterNavLink}
+                    to="/auth"
+                    activeclassname="active"
+                    exact
                   >
-                  Login/Sign Up
-                </NavLink>
-              </NavItem>
+                    SignUp/SignIn
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem
+                    onClick={this.closeNavbar}
+                    tag={ReactRouterNavLink}
+                    to="/account"
+                    activeclassname="active"
+                    exact
+                  >
+                    Account
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
             </Nav>
           </Collapse>
         </Navbar>
