@@ -49,7 +49,7 @@ class Account extends Component {
             changed={this.numberHandler}
             label="Select the number friends you usually play with"
           />
-          { this.state.myName && this.state.numberOfFriends
+          { this.state.names.myName && this.state.numberOfFriends
             ? <AddFriends numberOfFriends={this.state.numberOfFriends}
               name0={this.state.names.name0}
               name1={this.state.names.name1}
@@ -72,41 +72,48 @@ class Account extends Component {
   }
   submitHandler = (event) => {
     event.preventDefault();
-    this.props.onNamesPost(this.state.names, )
+    this.props.onNamesPost(this.state.names, this.props.userId);
   }
-  nameHandler = (event) => {
-    this.setState({
-      myName: event.target.value
-    });
+  nameHandler = ({target}) => {
+    let names = {...this.state.names};
+    names.myName = target.value;
+    this.setState({names});
   }
   numberHandler = (event) => {
     this.setState({
       numberOfFriends: event.target.value
     });
   }
-  friendsNameHandler = (event) => {
-    console.log(event.target.id);
-    switch (event.target.id) {
+  friendsNameHandler = ({target}) => {
+    const names = {...this.state.names};
+    switch (target.id) {
       case 'name0':
-        this.setState({name0: event.target.value});
+        names.name0 = target.value;
+        this.setState({names});
         break;
       case 'name1':
-        this.setState({name1: event.target.value});
+        names.name1 = target.value;
+        this.setState({names});
         break;
       case 'name2':
-        this.setState({name2: event.target.value});
+        names.name2 = target.value;
+        this.setState({names});
         break;
       case 'name3':
-        this.setState({name3: event.target.value});
+        names.name3 = target.value;
+        this.setState({names});
         break;
       case 'name4':
-        this.setState({name4: event.target.value});
+        names.name4 = target.value;
+        this.setState({names});
         break;
       case 'name5':
-        this.setState({name5: event.target.value});
+        names.name5 = target.value;
+        this.setState({names});
         break;
       case 'name6':
-        this.setState({name6: event.target.value});
+        names.name6 = target.value;
+        this.setState({names});
         break;
       default:
         // do nothing
