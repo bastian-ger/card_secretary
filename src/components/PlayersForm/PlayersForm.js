@@ -4,16 +4,23 @@ import Aux from '../../hoc/Aux';
 import Button from '../UI/Button/Button';
 import { connect } from 'react-redux';
 import * as playersActions from '../../store/actions/players';
+import * as namesActions from '../../store/actions/names';
 import * as gameDependentComponentActions from '../../store/actions/gameDependentComponent';
 import { withRouter } from 'react-router-dom';
-
 import Input from '../UI/Input/Input';
+import Spinner from '../UI/Spinner/Spinner';
 
 class PlayersForm extends Component {
   state = {
     players: {},
     currentPlayerName: '',
-    gameDependentComponentValue: 100
+    gameDependentComponentValue: 100,
+    hideQuestion: false
+  }
+  componentDidMount() {
+    if (!this.props.namesFromRedux && this.props.isLoggedIn) {
+      this.props.onNamesGet(this.props.token, this.props.userId);
+    }
   }
 
   render() {
@@ -48,8 +55,35 @@ class PlayersForm extends Component {
         changed={this.changedGameDependentComponentValue} />;
     }
 
+    let questionDefaultNames = null;
+    if (this.props.loading) {
+      questionDefaultNames = <Spinner />;
+    }
+    if (this.props.namesFromRedux && !this.state.hideQuestion) {
+      questionDefaultNames = (
+        <Aux>
+          <p>Do you want to use your usual friends' names?</p>
+          <Button
+            buttonType="Green"
+            small
+            clicked={this.questionDefaultNamesButtonHandler}
+          >
+            Yes
+          </Button>
+          <Button
+            buttonType="Red"
+            small
+            clicked={this.hideQuestionDefaultNames}
+          >
+            No
+          </Button>
+        </Aux>
+      );
+    }
+
     return (
       <Aux>
+        {questionDefaultNames}
         <form
           onSubmit={this.addNameHandler}
           className={classes.PlayersForm}
@@ -127,6 +161,34 @@ class PlayersForm extends Component {
     this.setState({gameDependentComponentValue: event.target.value});
   }
 
+  // this takes the namesFromRedux object and changes it so that it
+  // looks like the playersObject in state so that it can be consumed
+  // by onAddPlayers(players)
+  questionDefaultNamesButtonHandler = (event) => {
+    event.preventDefault();
+    let adjustedObject = {};
+    let value = '';
+    for (let prop in this.props.namesFromRedux) {
+      if (this.props.namesFromRedux[prop] !== '') {
+        value = this.props.namesFromRedux[prop];
+        adjustedObject = {
+          ...adjustedObject,
+          [value]: 0
+        }
+      }
+    }
+    this.setState({
+      players: adjustedObject,
+      hideQuestion: true
+    });
+  }
+
+  hideQuestionDefaultNames = () => {
+    this.setState({
+      hideQuestion: true
+    });
+  }
+
   startGameHandler = (players) => {
     this.props.onAddPlayers(players);
     this.props.onIncludeGameDependentComponentValue(this.state.gameDependentComponentValue);
@@ -134,11 +196,22 @@ class PlayersForm extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    onAddPlayers: (players) => dispatch(playersActions.addPlayers(players)),
-    onIncludeGameDependentComponentValue: (data) => dispatch(gameDependentComponentActions.includeGameDependentComponentValue(data))
+    namesFromRedux: state.names.names,
+    token: state.auth.token,
+    userId: state.auth.userId,
+    loading: state.names.loading,
+    isLoggedIn: state.auth.token !== null
   };
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(PlayersForm));
+const mapDispatchToProps = dispatch => {
+  return {
+    onAddPlayers: (players) => dispatch(playersActions.addPlayers(players)),
+    onIncludeGameDependentComponentValue: (data) => dispatch(gameDependentComponentActions.includeGameDependentComponentValue(data)),
+    onNamesGet: (token, userId) => dispatch(namesActions.namesGet(token, userId))
+  };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PlayersForm));
