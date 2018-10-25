@@ -23,6 +23,22 @@ const reducer = (state=initialState, action) => {
         ...state,
         loading: true
       };
+    case actionTypes.NAMES_GET_START:
+      return {
+        ...state,
+        loading: true
+      };
+    case actionTypes.NAMES_GET_SUCCESS:
+      return {
+        ...state,
+        names: action.names,
+        loading: false
+      };
+    case actionTypes.NAMES_GET_FAIL:
+      return {
+        ...state,
+        loading: false
+      };
     default:
       return state;
   }
