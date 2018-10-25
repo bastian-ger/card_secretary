@@ -13,7 +13,7 @@ class MauMau extends Component {
           able to get rid of his or her cards first wins the game. Please check
           a search engine to find out more about the rules.
         </p>
-        <h2>Please choose or enter the names of all players!</h2>
+        <h2>Please enter the names of all players!</h2>
         <PlayersForm />
       </main>
     );
