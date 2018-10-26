@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, NavLink as ReactRouterNavLink } from 'react-router-dom';
+import { Link, NavLink as ReactRouterNavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as authActions from '../../store/actions/auth';
 import {
@@ -125,6 +125,7 @@ class MyNavbar extends Component {
   logoutHandler = () => {
     this.props.onLogout();
     this.closeNavbar();
+    this.props.history.push('/');
   }
 }
 
@@ -140,4 +141,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyNavbar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyNavbar));

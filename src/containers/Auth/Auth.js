@@ -81,6 +81,7 @@ class Auth extends Component  {
   submitHandler = (event) => {
     event.preventDefault();
     this.props.onAuth(this.state.email, this.state.password, this.state.isSignUpMode);
+    this.props.history.push('/');
   }
   switchAuthModeHandler = () =>  {
     this.setState(prevState => {
