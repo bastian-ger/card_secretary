@@ -21,12 +21,12 @@ const namesPostFail = (error) => {
   };
 };
 
-export const namesPost = (names, userId) => {
+export const namesPost = (names, userId, token) => {
   console.log('action ', userId);
 
   return dispatch => {
     namesPostStart();
-    axios.put(`/users/${userId}.json`, names)
+    axios.put(`/users/${userId}.json?auth=${token}`, names)
       .then(response => {
         console.log(response.data);
         dispatch(namesPostSuccess(response.data, names));
