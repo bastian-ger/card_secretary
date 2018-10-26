@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link, NavLink as ReactRouterNavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as authActions from '../../store/actions/auth';
+import Aux from '../../hoc/Aux';
 import {
   Collapse,
   Navbar,
@@ -94,16 +95,20 @@ class MyNavbar extends Component {
                 </DropdownToggle>
                 <DropdownMenu right>
                   { signInSignOut }
-                  <DropdownItem divider />
-                  <DropdownItem
-                    onClick={this.closeNavbar}
-                    tag={ReactRouterNavLink}
-                    to="/account"
-                    activeclassname="active"
-                    exact
-                  >
-                    Account
-                  </DropdownItem>
+                  { this.props.isLoggedIn ?
+                    <Aux>
+                      <DropdownItem divider />
+                      <DropdownItem
+                      onClick={this.closeNavbar}
+                      tag={ReactRouterNavLink}
+                      to="/account"
+                      activeclassname="active"
+                      exact
+                      >
+                      Account
+                    </DropdownItem>
+                  </Aux>
+                  : null }
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
