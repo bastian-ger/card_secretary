@@ -66,6 +66,7 @@ class Account extends Component {
             >
               Submit
           </Button>
+          { this.props.error ? <p>Error: {this.props.error.message}</p> : null }
        </form>
       </main>
     );
