@@ -72,7 +72,10 @@ class Account extends Component {
   }
   submitHandler = (event) => {
     event.preventDefault();
-    this.props.onNamesPost(this.state.names, this.props.userId);
+    this.props.onNamesPost(this.state.names, this.props.userId, this.props.token);
+    if (!this.props.error) {
+      this.props.history.push('/');
+    }
   }
   nameHandler = ({target}) => {
     let names = {...this.state.names};
@@ -123,13 +126,15 @@ class Account extends Component {
 
 const mapStateToProps = state => {
   return {
-    userId: state.auth.userId
+    userId: state.auth.userId,
+    token: state.auth.token,
+    error: state.names.error
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onNamesPost: (names, userId) => dispatch(namesActions.namesPost(names, userId))
+    onNamesPost: (names, userId, token) => dispatch(namesActions.namesPost(names, userId, token))
   };
 };
 
