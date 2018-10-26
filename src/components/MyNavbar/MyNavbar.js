@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link, NavLink as ReactRouterNavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as authActions from '../../store/actions/auth';
 import {
   Collapse,
   Navbar,
@@ -24,6 +26,26 @@ class MyNavbar extends Component {
   }
 
   render() {
+    let signInSignOut = (
+      <DropdownItem
+        onClick={this.closeNavbar}
+        tag={ReactRouterNavLink}
+        to="/auth"
+        activeclassname="active"
+        exact
+      >
+        SignUp/SignIn
+      </DropdownItem>
+    );
+    if (this.props.isLoggedIn) {
+      signInSignOut = (
+        <DropdownItem
+          onClick={this.logoutHandler}
+        >
+          Logout
+        </DropdownItem>
+      );
+    }
     return (
       <div>
         <Navbar color="dark" dark fixed="top" expand="md">
@@ -68,18 +90,10 @@ class MyNavbar extends Component {
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  SignUp/SignIn
+                  Account
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem
-                    onClick={this.closeNavbar}
-                    tag={ReactRouterNavLink}
-                    to="/auth"
-                    activeclassname="active"
-                    exact
-                  >
-                    SignUp/SignIn
-                  </DropdownItem>
+                  { signInSignOut }
                   <DropdownItem divider />
                   <DropdownItem
                     onClick={this.closeNavbar}
@@ -98,16 +112,32 @@ class MyNavbar extends Component {
       </div>
     );
   }
-  toggle() {
+  toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
-  closeNavbar() {
+  closeNavbar = () => {
     this.setState({
       isOpen: false
     });
   }
+  logoutHandler = () => {
+    this.props.onLogout();
+    this.closeNavbar();
+  }
 }
 
-export default MyNavbar;
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: state.auth.token !== null
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onLogout: () => dispatch(authActions.logout())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyNavbar);
