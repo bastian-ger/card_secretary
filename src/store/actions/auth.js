@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import axios from 'axios';
+import axios from '../../axios-database';
 
 export const authStart = () =>  {
   return  {
@@ -57,7 +57,7 @@ export const auth = (email, password, isSignUpMode) =>  {
           const patchObject = {
             [response.data.localId]: { myName: '' }
           }
-          axios.patch('https://card-secretary.firebaseio.com/users.json', patchObject)
+          axios.patch(`users.json?auth=${response.data.idToken}`, patchObject)
             .then(response => {
               console.log('patch successful', response);
             })
