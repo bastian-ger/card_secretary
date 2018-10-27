@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-database';
+import { namesPatch } from './names';
 
 export const authStart = () =>  {
   return  {
@@ -57,13 +58,7 @@ export const auth = (email, password, isSignUpMode) =>  {
           const patchObject = {
             [response.data.localId]: { myName: '' }
           }
-          axios.patch(`users.json?auth=${response.data.idToken}`, patchObject)
-            .then(response => {
-              console.log('patch successful', response);
-            })
-            .catch(err => {
-              console.log('patch failed', err);
-            });
+          dispatch(namesPatch(response.data.idToken, patchObject));
         }
       })
       .catch(err => {
