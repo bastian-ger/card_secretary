@@ -60,7 +60,7 @@ const namesGetFAIL = (error) => {
 
 export const namesGet = (token, userId) => {
   return dispatch => {
-    namesGetStart();
+    dispatch(namesGetStart());
     const url = `/users/${userId}.json?auth=${token}`;
     axios.get(url)
       .then(response => {
@@ -70,6 +70,38 @@ export const namesGet = (token, userId) => {
       .catch(error => {
         console.log('namesGet', error);
         dispatch(namesGetFAIL(error));
+      });
+  }
+};
+
+const namesPatchStart = () => {
+  return {
+    type: actionTypes.NAMES_PATCH_START
+  };
+};
+
+const namesPatchSuccess = () => {
+  return {
+    type: actionTypes.NAMES_POST_SUCCESS
+  };
+};
+
+const namesPatchFail = (error) => {
+  return {
+    type: actionTypes.NAMES_PATCH_FAIL,
+    error: error
+  };
+};
+
+export const namesPatch = (token, data) => {
+  return dispatch => {
+    dispatch(namesPatchStart());
+    axios.patch(`users.json?auth=${token}`, data)
+      .then(response => {
+        dispatch(namesPatchSuccess());
+      })
+      .catch(error => {
+        dispatch(namesPatchFail(error));
       });
   }
 };
