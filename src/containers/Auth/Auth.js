@@ -41,7 +41,7 @@ class Auth extends Component  {
           at least 8 characters</small>
     </div>
 
-    if (this.props.loading) {
+    if (this.props.loading || this.props.namesLoading ) {
       form = <Spinner />;
     }
 
@@ -81,7 +81,7 @@ class Auth extends Component  {
   submitHandler = (event) => {
     event.preventDefault();
     this.props.onAuth(this.state.email, this.state.password, this.state.isSignUpMode);
-    if (!this.props.error) {
+    if (!this.props.error && !this.props.namesError && !this.props.loading && !this.props.namesLoading ) {
       if (this.state.isSignUpMode) {
         this.props.history.push('/Account');
       }
@@ -100,7 +100,9 @@ class Auth extends Component  {
 const mapStateToProps = state => {
   return {
     loading: state.auth.loading,
-    error: state.auth.error
+    error: state.auth.error,
+    namesLoading: state.names.loading,
+    namesError: state.names.error
   };
 };
 
