@@ -46,6 +46,24 @@ const reducer = (state=initialState, action) => {
         loading: false,
         error: action.error
       };
+    case actionTypes.NAMES_PATCH_START:
+      return {
+        ...state,
+        loading: true,
+        error: null
+      };
+    case actionTypes.NAMES_PATCH_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null
+      };
+    case actionTypes.NAMES_PATCH_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.error
+      };
     default:
       return state;
   }
