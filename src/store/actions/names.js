@@ -82,7 +82,7 @@ const namesPatchStart = () => {
 
 const namesPatchSuccess = () => {
   return {
-    type: actionTypes.NAMES_POST_SUCCESS
+    type: actionTypes.NAMES_PATCH_SUCCESS
   };
 };
 
