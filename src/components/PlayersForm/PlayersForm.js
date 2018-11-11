@@ -201,7 +201,7 @@ const mapStateToProps = state => {
     namesFromRedux: state.names.names,
     token: state.auth.token,
     userId: state.auth.userId,
-    loading: state.names.loading,
+    loading: state.names.namesGetLoading,
     isLoggedIn: state.auth.token !== null
   };
 };

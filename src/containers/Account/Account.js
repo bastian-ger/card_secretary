@@ -129,7 +129,7 @@ const mapStateToProps = state => {
   return {
     userId: state.auth.userId,
     token: state.auth.token,
-    error: state.names.error
+    error: state.names.namesPostError
   };
 };
 

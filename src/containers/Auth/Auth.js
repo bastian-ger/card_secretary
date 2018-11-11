@@ -101,8 +101,8 @@ const mapStateToProps = state => {
   return {
     loading: state.auth.loading,
     error: state.auth.error,
-    namesLoading: state.names.loading,
-    namesError: state.names.error
+    namesLoading: state.names.namesPatchLoading,
+    namesError: state.names.namesPatchError
   };
 };
 
