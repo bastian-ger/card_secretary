@@ -2,3 +2,7 @@
   display: block;
   text-align: center;
 }
+
+.Account p {
+  color: #fc0000;
+}

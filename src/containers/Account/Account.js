@@ -66,6 +66,7 @@ class Account extends Component {
           Submit
       </Button>
       { this.props.error ? <p>Error: {this.props.error.message}</p> : null }
+      { this.props.namesPatchError ? <p>Error: {this.props.namesPatchError.message}</p> : null }
    </form>;
 
    if (this.props.authLoading || this.props.namesGetLoading) {
@@ -138,7 +139,8 @@ const mapStateToProps = state => {
     token: state.auth.token,
     authLoading: state.auth.loading,
     namesGetLoading: state.names.namesGetLoading,
-    error: state.names.namesPostError
+    error: state.auth.error,
+    namesPatchError: state.names.namesPatchError
   };
 };
 
