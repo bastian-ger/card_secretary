@@ -29,6 +29,12 @@ export const logout = () => {
   };
 };
 
+export const authStop = () => {
+  return {
+    type: actionTypes.AUTH_STOP
+  };
+};
+
 export const checkAuthTimeout = (expiresInTime) => {
   return dispatch => {
     setTimeout(() => {
@@ -59,6 +65,7 @@ export const auth = (email, password, isSignUpMode) =>  {
             [response.data.localId]: { myName: '' }
           }
           dispatch(namesPatch(response.data.idToken, patchObject));
+          dispatch(authStop());
         }
       })
       .catch(err => {

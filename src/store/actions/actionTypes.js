@@ -9,6 +9,7 @@ export const AUTH_START = 'AUTH_START';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
+export const AUTH_STOP = 'AUTH_STOP';
 export const NAMES_POST_START = 'NAMES_POST_START';
 export const NAMES_POST_SUCCESS = 'NAMES_POST_SUCCESS';
 export const NAMES_POST_FAIL = 'NAMES_POST_FAIL';
