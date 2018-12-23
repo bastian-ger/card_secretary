@@ -12,6 +12,8 @@ import NotFound from './components/NotFound/NotFound';
 import About from './components/About/About';
 import Auth from './containers/Auth/Auth';
 import Account from './containers/Account/Account';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class App extends Component {
   render() {
@@ -25,7 +27,7 @@ class App extends Component {
           <Route path="/rummy" component={Rummy}/>
           <Route path="/about" component={About}/>
           <Route path="/auth" component={Auth}/>
-          <Route path="/account" component={Account}/>
+          {this.props.isLoggedIn ? <Route path="/account" component={Account}/> : null}
           <Route path="/" exact component={Welcome}/>
           <Route component={NotFound} />
         </Switch>
@@ -35,4 +37,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: state.auth.token !== null
+  };
+};
+
+// Switch only works here with connect() when there is withRouter before it!
+// See: https://reacttraining.com/react-router/web/guides/redux-integration
+export default withRouter(connect(mapStateToProps)(App));
