@@ -5,6 +5,7 @@ import AddFriends from '../../components/AddFriends/AddFriends';
 import { connect } from 'react-redux';
 import * as namesActions from '../../store/actions/names';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import DisplayErrors from '../../components/DisplayErrors/DisplayErrors';
 import classes from './Account.css';
 
 class Account extends Component {
@@ -65,8 +66,7 @@ class Account extends Component {
         >
           Submit
       </Button>
-      { this.props.error ? <p>Error: {this.props.error.message}</p> : null }
-      { this.props.namesPatchError ? <p>Error: {this.props.namesPatchError.message}</p> : null }
+      <DisplayErrors errors={[this.props.error, this.props.namesPatchError, this.props.namesPost]} />
    </form>;
 
    if (this.props.authLoading || this.props.namesGetLoading) {
@@ -82,7 +82,7 @@ class Account extends Component {
   submitHandler = (event) => {
     event.preventDefault();
     this.props.onNamesPost(this.state.names, this.props.userId, this.props.token);
-    if (!this.props.error) {
+    if (!this.props.namesPostError) {
       this.props.history.push('/');
     }
   }
@@ -140,7 +140,8 @@ const mapStateToProps = state => {
     authLoading: state.auth.loading,
     namesGetLoading: state.names.namesGetLoading,
     error: state.auth.error,
-    namesPatchError: state.names.namesPatchError
+    namesPatchError: state.names.namesPatchError,
+    namesPostError: state.names.namesPostError
   };
 };
 
