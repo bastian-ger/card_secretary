@@ -3,9 +3,10 @@ import classes from './Welcome.css';
 import MyCarousel from '../MyCarousel/MyCarousel';
 import StyledLink from '../UI/StyledLink/StyledLink';
 import DisplayErrors from '../DisplayErrors/DisplayErrors';
+import { connect } from 'react-redux';
 
 class Welcome extends Component {
-  render {
+  render() {
     return (
       <main className={classes.Welcome}>
         <h1>Card Game Secretary</h1>
@@ -28,7 +29,7 @@ class Welcome extends Component {
           >
           Rummy
         </StyledLink>
-        <DisplayErrors errors={[this.props.namesPostError]}
+        <DisplayErrors errors={[this.props.namesPostError]} />
       </main>
     );
   }
