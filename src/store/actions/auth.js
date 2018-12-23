@@ -67,9 +67,11 @@ export const auth = (email, password, isSignUpMode) =>  {
           dispatch(namesPatch(response.data.idToken, patchObject));
           dispatch(authStop());
         }
+        dispatch(authStop());
       })
       .catch(err => {
         dispatch(authFail(err.response.data.error));
+        dispatch(authStop());
       })
   };
 };
