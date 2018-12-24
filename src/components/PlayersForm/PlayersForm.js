@@ -62,7 +62,7 @@ class PlayersForm extends Component {
     if (this.props.namesFromRedux && !this.state.hideQuestion) {
       questionDefaultNames = (
         <Aux>
-          <p>Do you want to use your usual friends' names?</p>
+          <p>Do you want to use your usual friends&#39; names?</p>
           <Button
             buttonType="Green"
             small
