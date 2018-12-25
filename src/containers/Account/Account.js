@@ -69,7 +69,7 @@ class Account extends Component {
       <DisplayErrors errors={[this.props.error, this.props.namesPatchError, this.props.namesPost]} />
    </form>;
 
-   if (this.props.authLoading || this.props.namesGetLoading) {
+   if (this.props.authLoading || this.props.namesPatchLoading) {
      form = <Spinner />;
    }
 
@@ -138,7 +138,7 @@ const mapStateToProps = state => {
     userId: state.auth.userId,
     token: state.auth.token,
     authLoading: state.auth.loading,
-    namesGetLoading: state.names.namesGetLoading,
+    namesPatchLoading: state.names.namesPatchLoading,
     error: state.auth.error,
     namesPatchError: state.names.namesPatchError,
     namesPostError: state.names.namesPostError
