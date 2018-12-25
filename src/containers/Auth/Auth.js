@@ -5,6 +5,7 @@ import classes from './Auth.css';
 import * as authActions from '../../store/actions/auth';
 import { connect } from 'react-redux';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import { Redirect } from 'react-router-dom';
 
 class Auth extends Component  {
   state = {
@@ -41,17 +42,29 @@ class Auth extends Component  {
           at least 8 characters</small>
     </div>
 
-    if (this.props.loading || this.props.namesLoading ) {
+    if (this.props.authLoading || this.props.namesLoading ) {
       form = <Spinner />;
+    }
+
+    let authRedirect = null;
+
+    let authRedirectPath = '/';
+    if (this.state.isSignUpMode) {
+      authRedirectPath = '/account';
+    }
+
+    if (this.props.isLoggedIn && !this.props.namesLoading) {
+      authRedirect = <Redirect to={authRedirectPath} />
     }
 
     return (
       <section className={classes.Auth}>
+        {authRedirect}
         <h1>{this.state.isSignUpMode ? 'SIGN UP' : 'SIGN IN'}</h1>
         <form
           onSubmit={this.submitHandler}>
           {form}
-          {this.props.error ? <p>Error: {this.props.error.message}</p> : null}
+          {this.props.authError ? <p>Error: {this.props.authError.message}</p> : null}
           <Button
             buttonType="Green"
             small
@@ -81,14 +94,6 @@ class Auth extends Component  {
   submitHandler = (event) => {
     event.preventDefault();
     this.props.onAuth(this.state.email, this.state.password, this.state.isSignUpMode);
-    if (!this.props.error && !this.props.namesError && !this.props.loading && !this.props.namesLoading ) {
-      if (this.state.isSignUpMode) {
-        this.props.history.push('/Account');
-      }
-      else {
-        this.props.history.push('/');
-      }
-    }
   }
   switchAuthModeHandler = () =>  {
     this.setState(prevState => {
@@ -99,8 +104,9 @@ class Auth extends Component  {
 
 const mapStateToProps = state => {
   return {
-    loading: state.auth.loading,
-    error: state.auth.error,
+    authLoading: state.auth.loading,
+    authError: state.auth.error,
+    isLoggedIn: state.auth.token !== null,
     namesLoading: state.names.namesPatchLoading,
     namesError: state.names.namesPatchError
   };
