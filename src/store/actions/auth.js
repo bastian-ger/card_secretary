@@ -62,8 +62,17 @@ export const auth = (email, password, isSignUpMode) =>  {
         dispatch(checkAuthTimeout(response.data.expiresIn));
         if (isSignUpMode) {
           const patchObject = {
-            [response.data.localId]: { myName: '' }
-          }
+            [response.data.localId]: {
+              myName: '',
+              name0: '',
+              name1: '',
+              name2: '',
+              name3: '',
+              name4: '',
+              name5: '',
+              name6: ''
+            }
+          };
           dispatch(namesPatch(response.data.idToken, patchObject));
           dispatch(authStop());
         }
