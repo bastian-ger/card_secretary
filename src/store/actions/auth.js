@@ -1,6 +1,7 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-database';
 import { namesPatch } from './names';
+import { namesDelete } from './names';
 
 export const authStart = () =>  {
   return  {
@@ -23,9 +24,16 @@ export const authFail = (error) =>  {
   };
 };
 
-export const logout = () => {
+const authLogout = () => {
   return {
     type: actionTypes.AUTH_LOGOUT
+  };
+};
+
+export const logout = () => {
+  return dispatch => {
+    dispatch(authLogout());
+    dispatch(namesDelete());
   };
 };
 

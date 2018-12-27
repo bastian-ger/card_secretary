@@ -68,6 +68,11 @@ const reducer = (state=initialState, action) => {
         namesPatchLoading: false,
         namesPatchError: action.error
       };
+    case actionTypes.NAMES_DELETE:
+      return {
+        ...state,
+        names: null
+      }
     default:
       return state;
   }

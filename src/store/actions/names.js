@@ -105,3 +105,9 @@ export const namesPatch = (token, data) => {
       });
   }
 };
+
+export const namesDelete = () => {
+  return {
+    type: actionTypes.NAMES_DELETE
+  };
+};
