@@ -12,7 +12,7 @@ class Auth extends Component  {
   state = {
     email: '',
     password: '',
-    isSignUpMode: true
+    isSignUpMode: false
   }
 
   render()  {
@@ -49,19 +49,14 @@ class Auth extends Component  {
 
     let authRedirect = null;
 
-    let authRedirectPath = '/';
-    if (this.state.isSignUpMode) {
-      authRedirectPath = '/account';
-    }
-
     if (this.props.isLoggedIn && !this.props.namesPatchLoading) {
-      authRedirect = <Redirect to={authRedirectPath} />
+      authRedirect = <Redirect to="/account" />
     }
 
     return (
       <section className={classes.Auth}>
         {authRedirect}
-        <h1>{this.state.isSignUpMode ? 'SIGN UP' : 'SIGN IN'}</h1>
+        <h1>SIGN IN</h1>
         <form
           onSubmit={this.submitHandler}>
           {form}
@@ -73,12 +68,6 @@ class Auth extends Component  {
               SUBMIT
             </Button>
         </form>
-        <Button
-          buttonType="Red"
-          small
-          clicked={this.switchAuthModeHandler}>
-          SWITCH TO {this.state.isSignUpMode ? 'SIGN IN': 'SIGN UP'}
-        </Button>
       </section>
     );
   }
@@ -95,11 +84,6 @@ class Auth extends Component  {
   submitHandler = (event) => {
     event.preventDefault();
     this.props.onAuth(this.state.email, this.state.password, this.state.isSignUpMode);
-  }
-  switchAuthModeHandler = () =>  {
-    this.setState(prevState => {
-      return {isSignUpMode: !prevState.isSignUpMode};
-    });
   }
 }
 

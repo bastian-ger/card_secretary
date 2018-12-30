@@ -35,7 +35,7 @@ class MyNavbar extends Component {
         activeclassname="active"
         exact
       >
-        SignUp/SignIn
+        Sign In
       </DropdownItem>
     );
     if (this.props.isLoggedIn) {
