@@ -57,6 +57,8 @@ class Auth extends Component  {
       <section className={classes.Auth}>
         {authRedirect}
         <h1>SIGN IN</h1>
+        <p>Sign Up is deactivated. This area of the website is only accessible
+          for invited people!</p>
         <form
           onSubmit={this.submitHandler}>
           {form}
