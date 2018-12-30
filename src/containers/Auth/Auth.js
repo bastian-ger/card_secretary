@@ -6,6 +6,7 @@ import * as authActions from '../../store/actions/auth';
 import { connect } from 'react-redux';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import { Redirect } from 'react-router-dom';
+import DisplayErrors from '../../components/DisplayErrors/DisplayErrors';
 
 class Auth extends Component  {
   state = {
@@ -42,7 +43,7 @@ class Auth extends Component  {
           at least 8 characters</small>
     </div>
 
-    if (this.props.authLoading || this.props.namesLoading ) {
+    if (this.props.authLoading || this.props.namesPatchLoading ) {
       form = <Spinner />;
     }
 
@@ -53,7 +54,7 @@ class Auth extends Component  {
       authRedirectPath = '/account';
     }
 
-    if (this.props.isLoggedIn && !this.props.namesLoading) {
+    if (this.props.isLoggedIn && !this.props.namesPatchLoading) {
       authRedirect = <Redirect to={authRedirectPath} />
     }
 
@@ -64,7 +65,7 @@ class Auth extends Component  {
         <form
           onSubmit={this.submitHandler}>
           {form}
-          {this.props.authError ? <p>Error: {this.props.authError.message}</p> : null}
+          <DisplayErrors errors={[this.props.authError, this.props.namesPatchError]}/>
           <Button
             buttonType="Green"
             small
@@ -107,8 +108,8 @@ const mapStateToProps = state => {
     authLoading: state.auth.loading,
     authError: state.auth.error,
     isLoggedIn: state.auth.token !== null,
-    namesLoading: state.names.namesPatchLoading,
-    namesError: state.names.namesPatchError
+    namesPatchLoading: state.names.namesPatchLoading,
+    namesPatchError: state.names.namesPatchError
   };
 };
 
