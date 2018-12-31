@@ -92,3 +92,49 @@ export const auth = (email, password, isSignUpMode) =>  {
       })
   };
 };
+
+const changePasswordStart = () => {
+  return {
+    type: actionTypes.CHANGE_PASSWORD_START
+  };
+};
+
+const changePasswordSuccess = () => {
+  return {
+    type: actionTypes.CHANGE_PASSWORD_SUCCESS
+  };
+};
+
+const changePasswordFail = (error) => {
+  return {
+    type: actionTypes.CHANGE_PASSWORD_FAIL,
+    error: error
+  };
+};
+
+export const changePasswordReset = () => {
+  return {
+    type: actionTypes.CHANGE_PASSWORD_RESET
+  };
+};
+
+export const changePassword = (idToken, newPassword) => {
+  let url = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/setAccountInfo?key=${process.env.REACT_APP_FIREBASE}`;
+  const data = {
+    idToken: idToken,
+    password: newPassword,
+    returnSecureToken: false
+  };
+  return dispatch => {
+    dispatch(changePasswordStart());
+    axios.post(url, data)
+    .then(response => {
+      console.log(response);
+      dispatch(changePasswordSuccess());
+    })
+    .catch(error => {
+      console.log(error);
+      dispatch(changePasswordFail(error.response.data.error));
+    })
+  };
+};

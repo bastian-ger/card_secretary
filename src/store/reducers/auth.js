@@ -9,7 +9,10 @@ const initialState =  {
   token: null,
   userid: null,
   error: null,
-  loading: false
+  loading: false,
+  changePasswordLoading: false,
+  changePasswordError: null,
+  changePasswordSuccess: false
 }
 
 const reducer = (state = initialState, action) =>  {
@@ -46,6 +49,34 @@ const reducer = (state = initialState, action) =>  {
         ...state,
         loading: false
       };
+    case actionTypes.CHANGE_PASSWORD_START:
+      return {
+        ...state,
+        changePasswordError: null,
+        changePasswordLoading: true,
+        changePasswordSuccess: false
+      };
+    case actionTypes.CHANGE_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        changePasswordLoading: false,
+        changePasswordError: null,
+        changePasswordSuccess: true
+      };
+    case actionTypes.CHANGE_PASSWORD_FAIL:
+      return {
+        ...state,
+        changePasswordLoading: false,
+        changePasswordError: action.error,
+        changePasswordSuccess: false
+      };
+    case actionTypes.CHANGE_PASSWORD_RESET:
+      return {
+        ...state,
+        changePasswordLoading: false,
+        changePasswordError: null,
+        changePasswordSuccess: false
+      }
     default:
       return state;
   }
