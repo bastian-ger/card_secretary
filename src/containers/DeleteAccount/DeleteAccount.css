@@ -1,0 +1,12 @@
+.DeleteAccount h1, p {
+  text-align: center;
+}
+
+.DeleteAccount label {
+  display: block;
+  text-align: center;
+}
+
+.DeleteAccount p {
+  color: #fc0000;
+}
