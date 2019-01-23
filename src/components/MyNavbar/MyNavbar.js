@@ -116,6 +116,15 @@ class MyNavbar extends Component {
                       >
                       Change Password
                     </DropdownItem>
+                    <DropdownItem
+                      onClick={this.closeNavbar}
+                      tag={ReactRouterNavLink}
+                      to="/deleteAccount"
+                      activeclassname="active"
+                      exact
+                      >
+                      Delete Account
+                    </DropdownItem>
                   </Aux>
                   : null }
                 </DropdownMenu>

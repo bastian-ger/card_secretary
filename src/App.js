@@ -13,6 +13,7 @@ import About from './components/About/About';
 import Auth from './containers/Auth/Auth';
 import Account from './containers/Account/Account';
 import ChangePassword from './containers/ChangePassword/ChangePassword';
+import DeleteAccount from './containers/DeleteAccount/DeleteAccount';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -29,6 +30,7 @@ class App extends Component {
           <Route path="/about" component={About}/>
           <Route path="/auth" component={Auth}/>
           {this.props.isLoggedIn ? <Route path="/changePassword" component={ChangePassword}/> : null}
+          {this.props.isLoggedIn ? <Route path="/deleteAccount" component={DeleteAccount}/> : null}
           {this.props.isLoggedIn ? <Route path="/account" component={Account}/> : null}
           <Route path="/" exact component={Welcome}/>
           <Route component={NotFound} />
