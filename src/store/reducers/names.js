@@ -7,7 +7,9 @@ const initialState = {
   namesGetLoading: false,
   namesGetError: null,
   namesPatchLoading: false,
-  namesPatchError: null
+  namesPatchError: null,
+  namesDeleteDatabaseLoading: false,
+  namesDeleteDatabaseError: null
 };
 
 const reducer = (state=initialState, action) => {
@@ -73,6 +75,30 @@ const reducer = (state=initialState, action) => {
         ...state,
         names: null
       }
+    case actionTypes.NAMES_DELETE_DATABASE_START:
+      return {
+        ...state,
+        namesDeleteDatabaseLoading: true,
+        namesDeleteDatabaseError: null
+      };
+    case actionTypes.NAMES_DELETE_DATABASE_SUCCESS:
+      return {
+        ...state,
+        namesDeleteDatabaseLoading: false,
+        namesDeleteDatabaseError: null
+      };
+    case actionTypes.NAMES_DELETE_DATABASE_FAIL:
+      return {
+        ...state,
+        namesDeleteDatabaseLoading: false,
+        namesDeleteDatabaseError: action.error
+      };
+    case actionTypes.NAMES_DELETE_DATABASE_RESET:
+      return {
+        ...state,
+        namesDeleteDatabaseLoading: false,
+        namesDeleteDatabaseError: null
+      };
     default:
       return state;
   }

@@ -22,17 +22,13 @@ const namesPostFail = (error) => {
 };
 
 export const namesPost = (names, userId, token) => {
-  console.log('action ', userId);
-
   return dispatch => {
     namesPostStart();
     axios.put(`/users/${userId}.json?auth=${token}`, names)
       .then(response => {
-        console.log(response.data);
         dispatch(namesPostSuccess(response.data, names));
       })
       .catch(error => {
-        console.log(error);
         dispatch(namesPostFail(error));
       });
   };
@@ -64,11 +60,9 @@ export const namesGet = (token, userId) => {
     const url = `/users/${userId}.json?auth=${token}`;
     axios.get(url)
       .then(response => {
-        console.log('namesGet', response.data);
         dispatch(namesGetSuccess(response.data));
       })
       .catch(error => {
-        console.log('namesGet', error);
         dispatch(namesGetFAIL(error));
       });
   }
@@ -109,5 +103,30 @@ export const namesPatch = (token, data) => {
 export const namesDelete = () => {
   return {
     type: actionTypes.NAMES_DELETE
+  };
+};
+
+export const namesDeleteDatabaseStart = () => {
+  return {
+    type: actionTypes.NAMES_DELETE_DATABASE_START
+  };
+};
+
+export const namesDeleteDatabaseSuccess = () => {
+  return {
+    type: actionTypes.NAMES_DELETE_DATABASE_SUCCESS
+  };
+};
+
+export const namesDeleteDatabaseFail = (error) => {
+  return {
+    type: actionTypes.NAMES_DELETE_DATABASE_FAIL,
+    error: error
+  };
+};
+
+export const namesDeleteDatabaseReset = () => {
+  return {
+    type: actionTypes.NAMES_DELETE_DATABASE_RESET
   };
 };

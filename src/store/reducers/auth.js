@@ -12,7 +12,10 @@ const initialState =  {
   loading: false,
   changePasswordLoading: false,
   changePasswordError: null,
-  changePasswordSuccess: false
+  changePasswordSuccess: false,
+  deleteAccountLoading: false,
+  deleteAccountError: null,
+  deleteAccountSuccess: false
 }
 
 const reducer = (state = initialState, action) =>  {
@@ -76,7 +79,35 @@ const reducer = (state = initialState, action) =>  {
         changePasswordLoading: false,
         changePasswordError: null,
         changePasswordSuccess: false
-      }
+      };
+    case actionTypes.DELETE_ACCOUNT_START:
+      return {
+        ...state,
+        deleteAccountLoading: true,
+        deleteAccountError: null,
+        deleteAccountSuccess: false
+      };
+    case actionTypes.DELETE_ACCOUNT_SUCCESS:
+      return {
+        ...state,
+        deleteAccountLoading: false,
+        deleteAccountError: null,
+        deleteAccountSuccess: true
+      };
+    case actionTypes.DELETE_ACCOUNT_FAIL:
+      return {
+        ...state,
+        deleteAccountLoading: false,
+        deleteAccountError: action.error,
+        deleteAccountSuccess: false
+      };
+    case actionTypes.DELETE_ACCOUNT_RESET:
+      return {
+        ...state,
+        deleteAccountLoading: false,
+        deleteAccountError: null,
+        deleteAccountSuccess: false
+      };
     default:
       return state;
   }

@@ -1,7 +1,10 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-database';
-import { namesPatch } from './names';
-import { namesDelete } from './names';
+import { namesPatch,
+          namesDelete,
+          namesDeleteDatabaseStart,
+          namesDeleteDatabaseSuccess,
+          namesDeleteDatabaseFail } from './names';
 
 export const authStart = () =>  {
   return  {
@@ -24,7 +27,7 @@ export const authFail = (error) =>  {
   };
 };
 
-const authLogout = () => {
+export const authLogout = () => {
   return {
     type: actionTypes.AUTH_LOGOUT
   };
@@ -65,7 +68,6 @@ export const auth = (email, password, isSignUpMode) =>  {
     dispatch(authStart());
     axios.post(url, authData)
       .then(response => {
-        console.log(response);
         dispatch(authSuccess(response.data.idToken, response.data.localId));
         dispatch(checkAuthTimeout(response.data.expiresIn));
         if (isSignUpMode) {
@@ -129,12 +131,60 @@ export const changePassword = (idToken, newPassword) => {
     dispatch(changePasswordStart());
     axios.post(url, data)
     .then(response => {
-      console.log(response);
       dispatch(changePasswordSuccess());
     })
     .catch(error => {
-      console.log(error);
       dispatch(changePasswordFail(error.response.data.error));
     })
   };
 };
+
+const deleteAccountStart = () => {
+  return {
+    type: actionTypes.DELETE_ACCOUNT_START
+  };
+};
+
+const deleteAccountSuccess = () => {
+  return {
+    type: actionTypes.DELETE_ACCOUNT_SUCCESS
+  };
+};
+
+const deleteAccountFail = (error) => {
+  return {
+    type: actionTypes.DELETE_ACCOUNT_FAIL,
+    error: error
+  };
+};
+
+export const deleteAccountReset = () => {
+  return {
+    type: actionTypes.DELETE_ACCOUNT_RESET
+  };
+};
+
+export const deleteAccount = (idToken, userId) => {
+  let url = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/deleteAccount?key=${process.env.REACT_APP_FIREBASE}`;
+  const data = {
+    idToken: idToken
+  };
+  return dispatch => {
+    dispatch(namesDeleteDatabaseStart());
+        axios.delete(`users/${userId}.json?auth=${idToken}`)
+          .then(response => {
+            dispatch(namesDeleteDatabaseSuccess());
+            dispatch(deleteAccountStart());
+            axios.post(url, data)
+            .then(response => {
+              dispatch(deleteAccountSuccess());
+            })
+            .catch(error => {
+              dispatch(deleteAccountFail(error.response.data.error));
+            })
+          })
+          .catch(error => {
+            dispatch(namesDeleteDatabaseFail(error));
+          });
+  };
+}
